@@ -70,6 +70,23 @@ In dashboard, click "Generate New Key" and copy it.
 ></iframe>
 ```
 
+### 5. Vercel Deployment
+
+This project is configured for deployment to Vercel with zero configuration needed. Both the admin dashboard and chat widget have Vercel configuration files.
+
+To deploy:
+1. Connect your GitHub repository to Vercel
+2. Select the appropriate project directory during setup:
+   - For Admin Dashboard: `odiadev-admin-dashboard/`
+   - For Chat Widget: `odiadev-chat-widget/`
+3. Vercel will automatically detect the Vite framework and build settings
+
+Environment variables can be set in the Vercel dashboard under Project Settings > Environment Variables.
+
+### 6. Health Checks
+
+Both applications include health check endpoints at `/api/health` that return a JSON response with the service status.
+
 ---
 
 ## Architecture
@@ -296,6 +313,7 @@ From Austin Eguale, Founder & CEO:
 - [x] Chat widget deployed
 - [x] Admin dashboard deployed
 - [x] Documentation complete
+- [x] Vercel deployment configurations added
 - [ ] Add GROQ_API_KEY (Required)
 - [ ] Add MINIMAX_API_KEY (Required)
 - [ ] Create admin account

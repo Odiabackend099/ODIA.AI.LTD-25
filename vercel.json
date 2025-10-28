@@ -1,0 +1,39 @@
+{
+  "github": {
+    "silent": true
+  },
+  "builds": [
+    {
+      "src": "odiadev-admin-dashboard/package.json",
+      "use": "@vercel/node",
+      "config": {
+        "buildCommand": "pnpm build",
+        "outputDirectory": "dist",
+        "installCommand": "cd ../.. && pnpm install --prefer-offline"
+      }
+    },
+    {
+      "src": "odiadev-chat-widget/package.json",
+      "use": "@vercel/node",
+      "config": {
+        "buildCommand": "pnpm build",
+        "outputDirectory": "dist",
+        "installCommand": "cd ../.. && pnpm install --prefer-offline"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/admin/(.*)",
+      "dest": "/odiadev-admin-dashboard/dist/$1"
+    },
+    {
+      "src": "/widget/(.*)",
+      "dest": "/odiadev-chat-widget/dist/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/odiadev-admin-dashboard/dist/$1"
+    }
+  ]
+}

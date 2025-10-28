@@ -380,6 +380,20 @@ if (requests.length > limit) {
 3. Alert on threshold exceeded
 4. Implement caching for repeated requests
 
+## Deployment Options
+
+The ODIADEV AI applications can be deployed using several methods:
+
+### Vercel Deployment (Recommended)
+
+The project is pre-configured for deployment to Vercel with zero configuration needed. See [Vercel Deployment Guide](./VERCEL-DEPLOYMENT-GUIDE.md) for detailed instructions.
+
+### Current Deployments
+
+The applications are currently deployed and accessible at:
+- Chat Widget: https://wi226k0g9688.space.minimax.io
+- Admin Dashboard: https://bowssclmerw2.space.minimax.io
+
 ## Deployment Checklist
 
 - [x] Database schema created
@@ -387,6 +401,7 @@ if (requests.length > limit) {
 - [x] Edge Functions deployed
 - [x] Chat widget built and deployed
 - [x] Admin dashboard built and deployed
+- [x] Vercel deployment configurations added
 - [ ] Add GROQ_API_KEY to Supabase environment variables
 - [ ] Add MINIMAX_API_KEY to Supabase environment variables
 - [ ] Test all API endpoints
@@ -450,6 +465,9 @@ ORDER BY date DESC;
 - Chat Widget: `/workspace/odiadev-chat-widget`
 - Admin Dashboard: `/workspace/odiadev-admin-dashboard`
 - Edge Functions: `/workspace/supabase/functions`
+
+### Deployment Guides
+- [Vercel Deployment Guide](./VERCEL-DEPLOYMENT-GUIDE.md) - Instructions for deploying to Vercel
 
 ## Next Steps
 
