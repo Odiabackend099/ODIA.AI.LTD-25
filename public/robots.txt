@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /widget/
+
+Sitemap: https://odia.dev/sitemap.xml
