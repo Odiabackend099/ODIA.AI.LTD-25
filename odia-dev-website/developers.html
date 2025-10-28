@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ODIADEV Developer API Documentation - Comprehensive voice AI APIs, SDKs, and integration guides for African markets.">
+    <title>Developers - ODIADEV AI LTD</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="./index.html" class="logo">ODIADEV</a>
+            
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="./products.html" class="nav-link">Products</a></li>
+                <li><a href="./technology.html" class="nav-link">Technology</a></li>
+                <li><a href="./about.html" class="nav-link">About</a></li>
+                <li><a href="./developers.html" class="nav-link">Developers</a></li>
+                <li><a href="./contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <button class="nav-toggle">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-navy) 0%, var(--background-dark) 100%); padding-top: 120px;">
+        <div class="container">
+            <div class="section-header">
+                <h1>Developer Documentation</h1>
+                <p class="section-subtitle">
+                    Our developer experience centers on clear onboarding, practical examples, 
+                    and predictable versioning. Build voice AI applications optimized for Africa with our APIs and SDKs.
+                </p>
+            </div>
+            
+            <div class="btn-group" style="margin-top: 3rem; justify-content: center;">
+                <a href="#getting-started" class="btn btn-primary">Get Started</a>
+                <a href="#api-reference" class="btn btn-secondary">API Reference</a>
+                <a href="#sdks" class="btn btn-secondary">SDKs & Libraries</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section id="getting-started" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Start Guide</h2>
+                <p class="section-subtitle">
+                    Get up and running with ODIADEV APIs in minutes. This guide walks you through 
+                    authentication, your first API call, and integration basics.
+                </p>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: 3rem;">
+                <div>
+                    <h3>Prerequisites</h3>
+                    <ul class="features-list">
+                        <li>An ODIADEV account (free sandbox available)</li>
+                        <li>API key from your dashboard</li>
+                        <li>Basic understanding of REST APIs and HTTP</li>
+                        <li>Optional: Postman or similar API testing tool</li>
+                    </ul>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4>1. Get Your API Key</h4>
+                        <p>
+                            Sign up at <a href="#" style="color: var(--accent-gold);">dashboard.odia.dev</a> 
+                            to get your API key. Sandbox keys are free and include rate limits suitable for development.
+                        </p>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4>2. Authenticate</h4>
+                        <p>
+                            Include your API key in the Authorization header as a Bearer token:
+                        </p>
+                        
+                        <div class="code-block">
+                            <code>Authorization: Bearer YOUR_API_KEY</code>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4>3. Make Your First Call</h4>
+                        <p>
+                            Test your authentication with a simple TTS (Text-to-Speech) request:
+                        </p>
+                        
+                        <div class="code-block">
+                            <code>curl -X POST https://api.odia.dev/v1/tts \<br>
+&nbsp;&nbsp;-H "Authorization: Bearer YOUR_API_KEY" \<br>
+&nbsp;&nbsp;-H "Content-Type: application/json" \<br>
+&nbsp;&nbsp;-d '{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"text": "Hello from ODIADEV",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"voice": "nigerian-female"<br>
+&nbsp;&nbsp;}'</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>SDK Installation</h3>
+                    
+                    <h4>JavaScript/TypeScript</h4>
+                    <div class="code-block">
+                        <code>npm install @odia-dev/sdk</code>
+                    </div>
+                    
+                    <h4>Python</h4>
+                    <div class="code-block">
+                        <code>pip install odia-dev</code>
+                    </div>
+                    
+                    <h4>Usage Example (JavaScript)</h4>
+                    <div class="code-block">
+                        <code>import { OdiaClient } from '@odia-dev/sdk';<br>
+<br>
+const client = new OdiaClient({<br>
+&nbsp;&nbsp;apiKey: 'YOUR_API_KEY'<br>
+});<br>
+<br>
+// Convert text to speech<br>
+const audio = await client.tts.synthesize({<br>
+&nbsp;&nbsp;text: 'Hello from Lagos, Nigeria!',<br>
+&nbsp;&nbsp;voice: 'nigerian-female'<br>
+});<br>
+<br>
+// Start a voice call<br>
+const call = await client.calls.create({<br>
+&nbsp;&nbsp;to: '+2348123456789',<br>
+&nbsp;&nbsp;flowId: 'welcome-flow'<br>
+});</code>
+                    </div>
+                    
+                    <h4>Usage Example (Python)</h4>
+                    <div class="code-block">
+                        <code>import odia_dev<br>
+<br>
+client = odia_dev.Client(api_key='YOUR_API_KEY')<br>
+<br>
+# Convert text to speech<br>
+audio = client.tts.synthesize(<br>
+&nbsp;&nbsp;text='Hello from Lagos, Nigeria!',<br>
+&nbsp;&nbsp;voice='nigerian-female'<br>
+)<br>
+<br>
+# Start a voice call<br>
+call = client.calls.create(<br>
+&nbsp;&nbsp;to='+2348123456789',<br>
+&nbsp;&nbsp;flow_id='welcome-flow'<br>
+)</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Reference -->
+    <section id="api-reference" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>API Reference</h2>
+                <p class="section-subtitle">
+                    RESTful endpoints with consistent patterns, clear responses, and comprehensive error handling.
+                </p>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: 3rem;">
+                <!-- Authentication -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method">POST</span>
+                        <span class="endpoint-path">/v1/auth/token</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p><strong>Purpose:</strong> Obtain access token for session-bound operations</p>
+                        <p><strong>Auth:</strong> API Key (query parameter)</p>
+                        <p><strong>Returns:</strong> Short-lived bearer token with refresh support</p>
+                    </div>
+                </div>
+                
+                <!-- Calls API -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method">POST</span>
+                        <span class="endpoint-path">/v1/calls</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p><strong>Purpose:</strong> Initiate outbound call with voice flow</p>
+                        <p><strong>Auth:</strong> Bearer token</p>
+                        <p><strong>Payload:</strong> destination, voice_flow_id, caller_id, context</p>
+                    </div>
+                </div>
+                
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method">GET</span>
+                        <span class="endpoint-path">/v1/calls/{id}</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p><strong>Purpose:</strong> Retrieve call status and metadata</p>
+                        <p><strong>Auth:</strong> Bearer token</p>
+                        <p><strong>States:</strong> queued, ringing, answered, completed, failed</p>
+                    </div>
+                </div>
+                
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method">GET</span>
+                        <span class="endpoint-path">/v1/calls/{id}/events</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p><strong>Purpose:</strong> Stream real-time call events</p>
+                        <p><strong>Auth:</strong> Bearer token</p>
+                        <p><strong>Transport:</strong> WebSocket or Server-Sent Events</p>
+                    </div>
+                </div>
+                
+                <!-- TTS API -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method">POST</span>
+                        <span class="endpoint-path">/v1/tts</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p><strong>Purpose:</strong> Synthesize speech from text</p>
+                        <p><strong>Auth:</strong> Bearer token</p>
+                        <p><strong>Payload:</strong> text, voice, sample_rate, format, language</p>
+                    </div>
+                </div>
+                
+                <!-- Analytics API -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method">GET</span>
+                        <span class="endpoint-path">/v1/analytics/summary</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p><strong>Purpose:</strong> Aggregated usage metrics</p>
+                        <p><strong>Auth:</strong> Bearer token</p>
+                        <p><strong>Dimensions:</strong> product, date, region, status</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Webhooks -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Webhooks</h2>
+                <p class="section-subtitle">
+                    Event-driven integrations for real-time updates from your voice AI applications.
+                </p>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: 3rem;">
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method">call.completed</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p><strong>Payload:</strong> call_id, duration, outcome, transcript, recording_url</p>
+                        <p><strong>Retry:</strong> Exponential backoff, at-least-once delivery</p>
+                        <p><strong>Security:</strong> HMAC signature verification</p>
+                    </div>
+                </div>
+                
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method">lead.created</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p><strong>Payload:</strong> lead_fields, consent_status, source_call_id, score</p>
+                        <p><strong>Retry:</strong> Exponential backoff with dead letter queue</p>
+                        <p><strong>Security:</strong> HMAC signature + IP allowlist</p>
+                    </div>
+                </div>
+                
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method">escalation.triggered</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p><strong>Payload:</strong> context_summary, urgency_level, recommended_action</p>
+                        <p><strong>Retry:</strong> Expedited retries with alerting</p>
+                        <p><strong>Security:</strong> HMAC signature + dedicated channel</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4 style="color: var(--accent-gold);">Webhook Security</h4>
+                    <ul class="features-list">
+                        <li>HMAC signatures for payload verification</li>
+                        <li>IP allowlisting for sensitive endpoints</li>
+                        <li>Retry policies with exponential backoff</li>
+                        <li>Dead letter queues for failed deliveries</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <h3>Webhook Example</h3>
+                <div class="code-block">
+                    <code>POST /your-webhook-endpoint<br>
+Content-Type: application/json<br>
+X-Odia-Dev-Signature: sha256=abc123...<br>
+<br>
+{<br>
+&nbsp;&nbsp;"event": "call.completed",<br>
+&nbsp;&nbsp;"data": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"call_id": "call_abc123",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"duration": 145,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"outcome": "converted",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"transcript": "Customer interested in product...",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"recording_url": "https://recordings.odia.dev/abc123.mp3"<br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;"timestamp": "2025-01-15T10:30:00Z"<br>
+}</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SDKs & Libraries -->
+    <section id="sdks" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>SDKs & Libraries</h2>
+                <p class="section-subtitle">
+                    Official SDKs for popular programming languages with full feature coverage 
+                    and examples for common use cases.
+                </p>
+            </div>
+            
+            <div class="grid grid-3" style="margin-top: 3rem;">
+                <div class="card">
+                    <h4 style="color: var(--accent-gold);">JavaScript/TypeScript</h4>
+                    <p><strong>Package:</strong> <code>@odia-dev/sdk</code></p>
+                    <p><strong>Features:</strong></p>
+                    <ul class="features-list">
+                        <li>Full API coverage</li>
+                        <li>TypeScript definitions</li>
+                        <li>Browser and Node.js support</li>
+                        <li>Real-time event streaming</li>
+                        <li>WebSocket integration</li>
+                    </ul>
+                    <div class="code-block" style="margin-top: 1rem;">
+                        <code>npm install @odia-dev/sdk</code>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4 style="color: var(--accent-gold);">Python</h4>
+                    <p><strong>Package:</strong> <code>odia-dev</code></p>
+                    <p><strong>Features:</strong></p>
+                    <ul class="features-list">
+                        <li>Async/await support</li>
+                        <li>Data science integrations</li>
+                        <li>Batch processing tools</li>
+                        <li>Webhook handler utilities</li>
+                        <li>Retry and error handling</li>
+                    </ul>
+                    <div class="code-block" style="margin-top: 1rem;">
+                        <code>pip install odia-dev</code>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4 style="color: var(--accent-gold);">REST API</h4>
+                    <p><strong>Format:</strong> OpenAPI 3.0 specification</p>
+                    <p><strong>Features:</strong></p>
+                    <ul class="features-list">
+                        <li>Language-agnostic</li>
+                        <li>OpenAPI documentation</li>
+                        <li>Postman collection</li>
+                        <li>curl examples</li>
+                        <li>Comprehensive error codes</li>
+                    </ul>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem;">View OpenAPI Spec</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product-Specific Guides -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Product Integration Guides</h2>
+                <p class="section-subtitle">
+                    End-to-end examples for integrating each of our products into your applications.
+                </p>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: 3rem;">
+                <div class="card" id="adaqua-docs">
+                    <h4 style="color: var(--accent-gold);">Adaqua AI Integration</h4>
+                    <p>Complete guide for implementing voice-driven marketing and lead capture.</p>
+                    
+                    <h5>Quick Start Example</h5>
+                    <div class="code-block">
+                        <code>// Create a marketing campaign<br>
+const campaign = await client.campaigns.create({<br>
+&nbsp;&nbsp;name: "Product Demo Outreach",<br>
+&nbsp;&nbsp;flow_id: "demo-flow",<br>
+&nbsp;&nbsp;target_list: prospects,<br>
+&nbsp;&nbsp;schedule: "immediate"<br>
+});<br>
+<br>
+// Track lead conversion<br>
+client.on('lead.created', (lead) => {<br>
+&nbsp;&nbsp;// Send to CRM<br>
+&nbsp;&nbsp;crm.createLead(lead.data);<br>
+});</code>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>Voice flow customization</li>
+                        <li>CRM integration patterns</li>
+                        <li>Lead scoring and analytics</li>
+                        <li>A/B testing voice scripts</li>
+                    </ul>
+                </div>
+                
+                <div class="card" id="callwaiting-docs">
+                    <h4 style="color: var(--accent-gold);">CallWaiting.ai Integration</h4>
+                    <p>Implement AI receptionist with call routing and calendar integration.</p>
+                    
+                    <h5>Quick Start Example</h5>
+                    <div class="code-block">
+                        <code>// Configure receptionist<br>
+const receptionist = await client.receptionist.configure({<br>
+&nbsp;&nbsp;business_hours: "9-17",<br>
+&nbsp;&nbsp;languages: ["english", "pidgin"],<br>
+&nbsp;&nbsp;routing_rules: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sales: "+234xxx",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;support: "+234xxx"<br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;calendar_integration: true<br>
+});<br>
+<br>
+// Handle call summaries<br>
+client.on('call.completed', (event) => {<br>
+&nbsp;&nbsp;if (event.data.outcome === 'scheduled') {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Update CRM with appointment<br>
+&nbsp;&nbsp;}<br>
+});</code>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>Call triage and routing logic</li>
+                        <li>Calendar booking integration</li>
+                        <li>Business hours management</li>
+                        <li>Multi-language support</li>
+                    </ul>
+                </div>
+                
+                <div class="card" id="serenitycare-docs">
+                    <h4 style="color: var(--accent-gold);">SerenityCare AI Integration</h4>
+                    <p>Mental health support with safety protocols and escalation pathways.</p>
+                    
+                    <h5>Ethical Guidelines</h5>
+                    <div class="code-block">
+                        <code>// Configure safety protocols<br>
+const safetyConfig = {<br>
+&nbsp;&nbsp;crisis_keywords: ["suicide", "hurt myself"],<br>
+&nbsp;&nbsp;escalation_hotline: "199",<br>
+&nbsp;&nbsp;emergency_contacts: emergencyList,<br>
+&nbsp;&nbsp;privacy_mode: "strict" // No PHI storage<br>
+};<br>
+<br>
+const session = await client.serenity.startSession({<br>
+&nbsp;&nbsp;user_id: anonymizedId,<br>
+&nbsp;&nbsp;consent_level: "basic",<br>
+&nbsp;&nbsp;safety_config: safetyConfig<br>
+});</code>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>Privacy-first configuration</li>
+                        <li>Crisis detection protocols</li>
+                        <li>Professional escalation paths</li>
+                        <li>Cultural sensitivity settings</li>
+                    </ul>
+                </div>
+                
+                <div class="card" id="crossai-docs">
+                    <h4 style="color: var(--accent-gold);">CrossAI Protect Integration</h4>
+                    <p>Emergency response coordination with structured data capture.</p>
+                    
+                    <h5>Emergency Protocol Example</h5>
+                    <div class="code-block">
+                        <code>// Initialize emergency response<br>
+const emergency = await client.emergency.configure({<br>
+&nbsp;&nbsp;response_team: "primary-team",<br>
+&nbsp;&nbsp;escalation_timeout: 300, // 5 minutes<br>
+&nbsp;&nbsp;location_services: true,<br>
+&nbsp;&nbsp;data_retention: "emergency-only"<br>
+});<br>
+<br>
+// Handle emergency calls<br>
+client.on('emergency.triggered', (event) => {<br>
+&nbsp;&nbsp;// Dispatch to emergency services<br>
+&nbsp;&nbsp;dispatcher.createIncident(event.data);<br>
+&nbsp;&nbsp;// Notify response team<br>
+&nbsp;&nbsp;notifyTeam(event.data.location);<br>
+});</code>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>Emergency escalation protocols</li>
+                        <li>Location-based routing</li>
+                        <li>Multi-agency coordination</li>
+                        <li>Incident documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Error Handling -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Error Handling & Status Codes</h2>
+                <p class="section-subtitle">
+                    Comprehensive error handling with clear codes, messages, and remediation guidance.
+                </p>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <h3>HTTP Status Codes</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; background-color: var(--card-background); border-radius: var(--radius-lg); overflow: hidden; margin-top: 2rem;">
+                        <thead>
+                            <tr style="background-color: var(--background-dark);">
+                                <th style="padding: 1rem; text-align: left; color: var(--accent-gold);">Code</th>
+                                <th style="padding: 1rem; text-align: left; color: var(--accent-gold);">Status</th>
+                                <th style="padding: 1rem; text-align: left; color: var(--accent-gold);">Description</th>
+                                <th style="padding: 1rem; text-align: left; color: var(--accent-gold);">Resolution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 1rem;">200</td>
+                                <td style="padding: 1rem;">OK</td>
+                                <td style="padding: 1rem;">Request successful</td>
+                                <td style="padding: 1rem;">No action needed</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 1rem;">400</td>
+                                <td style="padding: 1rem;">Bad Request</td>
+                                <td style="padding: 1rem;">Invalid request format</td>
+                                <td style="padding: 1rem;">Check request parameters and format</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 1rem;">401</td>
+                                <td style="padding: 1rem;">Unauthorized</td>
+                                <td style="padding: 1rem;">Invalid or missing API key</td>
+                                <td style="padding: 1rem;">Verify API key in Authorization header</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 1rem;">403</td>
+                                <td style="padding: 1rem;">Forbidden</td>
+                                <td style="padding: 1rem;">Insufficient permissions</td>
+                                <td style="padding: 1rem;">Check account limits and permissions</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 1rem;">429</td>
+                                <td style="padding: 1rem;">Rate Limited</td>
+                                <td style="padding: 1rem;">Too many requests</td>
+                                <td style="padding: 1rem;">Implement exponential backoff</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 1rem;">500</td>
+                                <td style="padding: 1rem;">Server Error</td>
+                                <td style="padding: 1rem;">Internal server error</td>
+                                <td style="padding: 1rem;">Retry with exponential backoff</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem;">503</td>
+                                <td style="padding: 1rem;">Service Unavailable</td>
+                                <td style="padding: 1rem;">Temporary service outage</td>
+                                <td style="padding: 1rem;">Retry with circuit breaker pattern</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <h3>Error Response Format</h3>
+                <div class="code-block">
+                    <code>{<br>
+&nbsp;&nbsp;"error": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"code": "RATE_LIMITED",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"message": "Too many requests. Rate limit: 1000/hour",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"details": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"retry_after": 3600,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"limit": 1000,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"window": "1h"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"request_id": "req_abc123"<br>
+&nbsp;&nbsp;}<br>
+}</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rate Limits -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Rate Limits & Pricing</h2>
+                <p class="section-subtitle">
+                    Transparent rate limits and usage-based pricing for predictable scaling.
+                </p>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: 3rem;">
+                <div class="card">
+                    <h4 style="color: var(--accent-gold);">Sandbox Environment</h4>
+                    <ul class="features-list">
+                        <li>1000 API calls per hour</li>
+                        <li>10 concurrent voice calls</li>
+                        <li>100MB TTS generation per hour</li>
+                        <li>Basic webhook delivery</li>
+                        <li>Email support</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-light);"><strong>Cost:</strong> Free for development</p>
+                </div>
+                
+                <div class="card">
+                    <h4 style="color: var(--accent-gold);">Production Environment</h4>
+                    <ul class="features-list">
+                        <li>Custom rate limits by plan</li>
+                        <li>Unlimited concurrent calls</li>
+                        <li>Unlimited TTS generation</li>
+                        <li>Advanced webhook reliability</li>
+                        <li>24/7 phone and email support</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-light);"><strong>Cost:</strong> Usage-based, volume discounts available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Developer Support</h2>
+                <p class="section-subtitle">
+                    Get help when you need it with comprehensive documentation, community support, and direct engineering access.
+                </p>
+            </div>
+            
+            <div class="grid grid-3" style="margin-top: 3rem;">
+                <div class="card">
+                    <h4 style="color: var(--accent-gold);">Documentation</h4>
+                    <ul class="features-list">
+                        <li>Interactive API explorer</li>
+                        <li>Code examples in multiple languages</li>
+                        <li>Video tutorials and walkthroughs</li>
+                        <li>Best practices guides</li>
+                        <li>Troubleshooting section</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">Browse Docs</a>
+                </div>
+                
+                <div class="card">
+                    <h4 style="color: var(--accent-gold);">Community</h4>
+                    <ul class="features-list">
+                        <li>Developer Discord server</li>
+                        <li>Stack Overflow community</li>
+                        <li>GitHub discussions</li>
+                        <li>Monthly developer webinars</li>
+                        <li>User-contributed examples</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">Join Community</a>
+                </div>
+                
+                <div class="card">
+                    <h4 style="color: var(--accent-gold);">Direct Support</h4>
+                    <ul class="features-list">
+                        <li>Email: support@odia.dev</li>
+                        <li>Priority support for enterprise</li>
+                        <li>Engineering office hours</li>
+                        <li>Custom integration assistance</li>
+                        <li>SLA-backed response times</li>
+                    </ul>
+                    <a href="./contact.html" class="btn btn-secondary" style="margin-top: 1rem;">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-navy) 0%, var(--background-dark) 100%); text-align: center;">
+        <div class="container">
+            <h2>Ready to Build Something Amazing?</h2>
+            <p class="section-subtitle">
+                Start building voice AI applications optimized for Africa. Get your API key, 
+                explore our documentation, and join the community of developers changing how Africa interacts with AI.
+            </p>
+            
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">Get API Key</a>
+                <a href="#" class="btn btn-secondary">View Examples</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ODIADEV AI LTD</h4>
+                    <p style="color: #E8F1F8; margin-bottom: 1rem;">
+                        Africa's Voice-Powered AI Infrastructure. 
+                        Democratizing voice AI for Africa with low-latency, accent-aware technology.
+                    </p>
+                    <p style="color: #E8F1F8; font-size: 0.9rem;">
+                        Headquarters: Lagos, Nigeria<br>
+                        Global Operations
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="./products.html#adaqua">Adaqua AI</a></li>
+                        <li><a href="./products.html#callwaiting">CallWaiting.ai</a></li>
+                        <li><a href="./products.html#serenitycare">SerenityCare AI</a></li>
+                        <li><a href="./products.html#crossai">CrossAI Protect</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./technology.html">Technology</a></li>
+                        <li><a href="./developers.html">Developers</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:hello@odia.dev">hello@odia.dev</a></li>
+                        <li><a href="mailto:sales@odia.dev">sales@odia.dev</a></li>
+                        <li><a href="mailto:support@odia.dev">support@odia.dev</a></li>
+                        <li><a href="mailto:partnerships@odia.dev">partnerships@odia.dev</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ODIADEV AI LTD. All rights reserved. | 
+                   <a href="#" style="color: #E8F1F8;">Privacy Policy</a> | 
+                   <a href="#" style="color: #E8F1F8;">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>

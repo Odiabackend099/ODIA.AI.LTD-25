@@ -1,0 +1,704 @@
+[
+  {
+    "query": "A professional hero image showing modern AI technology for African tech company, Lagos office setting",
+    "image_info": {
+      "url": "https://www.techinafrica.com/wp-content/uploads/2025/07/image_2dca6eb17c7dba49072c95f68c8585b2.jpeg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 151113,
+      "width": 1536,
+      "height": 1024,
+      "total_pixels": 1572864,
+      "basic_score": 0.8646174395253837,
+      "file_name": "african_tech_professional_ai_office_laptop.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 98.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is highly relevant to the search query and prompt, clearly depicting a professional African man working on a laptop displaying AI technology (neural network and code) in a modern office setting. The clarity is excellent, and there are no watermarks. The overall composition and professional aesthetic are very strong, making it ideal as a hero image.",
+      "file_name": "african_tech_professional_ai_office_laptop.jpg",
+      "caption": "A confident young African tech professional, dressed in a brown sweater, smiles directly at the camera while working on a silver laptop. The laptop screen prominently displays a neural network diagram and lines of code, indicating AI development. He is seated at a wooden desk in a bright, modern open-plan office, with diverse colleagues visible in the softly blurred background, conveying a collaborative and innovative work environment.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A professional hero image showing modern AI technology for African tech company, Lagos office setting",
+    "image_info": {
+      "url": "https://www.shutterstock.com/image-photo/african-american-data-center-technicians-600nw-2578489527.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 58813,
+      "width": 600,
+      "height": 338,
+      "total_pixels": 202800,
+      "basic_score": 0.7530599338364363,
+      "file_name": "African_Tech_Professionals_AI_Data_Center_Lagos_Office.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 98.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 96.0,
+      "explanation": "The image is exceptionally relevant to the search query and prompt. It clearly depicts African tech professionals working in a modern office with visible server infrastructure, strongly suggesting AI or advanced technology. The composition is professional, the clarity is excellent, and there are no watermarks. It perfectly fulfills the 'hero image' requirement.",
+      "file_name": "African_Tech_Professionals_AI_Data_Center_Lagos_Office.jpg",
+      "caption": "A group of focused African tech professionals, including men and women, diligently working on computers in a contemporary office setting. The background features blurred but identifiable server racks with glowing green lights, indicating a modern data center or AI infrastructure. The scene effectively portrays innovation and advanced technology in an African tech company environment, ideal for a Lagos office hero image.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional African business environment in Lagos Nigeria",
+    "image_info": {
+      "url": "https://img.freepik.com/free-photo/businessman-smiling-camera-office_482257-119319.jpg?semt=ais_hybrid&w=740&q=80",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 66096,
+      "width": 740,
+      "height": 493,
+      "total_pixels": 364820,
+      "basic_score": 0.8122557408323844,
+      "file_name": "african_business_professional_office_smiling.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 90.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is highly relevant to an 'African business professional in an office' setting, and clearly depicts a professional African man in a business environment. The clarity, composition, and lighting are excellent, contributing to a high overall quality. While the image doesn't specifically confirm a 'Lagos, Nigeria' location, it fully meets the 'Professional African business environment' aspect of the prompt.",
+      "file_name": "african_business_professional_office_smiling.jpg",
+      "caption": "A smiling African businessman, dressed in a sharp blue suit jacket and a checkered shirt, confidently holds his eyeglasses while sitting at a desk in a modern office. A laptop, a paper cup, and papers are on the desk, with a brick wall, large window, and general office equipment visible in the warm, well-lit background.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional image of AI voice assistant for call center and customer service",
+    "image_info": {
+      "url": "https://www.nextiva.com/cdn-cgi/image/width=1280,height=720,fit=cover,gravity=auto,format=auto/blog/wp-content/uploads/sites/10/2025/07/Call-Center-AI-Solutions.webp?resize=1024,576",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 66905,
+      "width": 1280,
+      "height": 720,
+      "total_pixels": 921600,
+      "basic_score": 0.9265629399580012,
+      "file_name": "professional_ai_customer_service_call_center_chatbot.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 90.0,
+      "explanation": "The image perfectly matches the search query and prompt by featuring a professional customer service call center environment with agents wearing headsets, alongside clear visual representations of AI/chatbot interaction through a friendly robot character and chat bubble. The image is crisp, well-composed, and free of watermarks.",
+      "file_name": "professional_ai_customer_service_call_center_chatbot.jpg",
+      "caption": "A smiling female customer service representative wearing a black headset works diligently at a computer in a modern, brightly lit call center. Several other agents are visible in the background, also wearing headsets. Integrated into the foreground is a friendly, white AI chatbot character with a glowing blue, smiling screen, accompanied by a white speech bubble icon, symbolizing advanced AI voice assistant and customer service capabilities.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional image of AI voice assistant for call center and customer service",
+    "image_info": {
+      "url": "https://yellow.ai/wp-content/uploads/2024/03/call-center-script.webp",
+      "img_format": "WEBP",
+      "mode": "RGB",
+      "file_size": 83994,
+      "width": 1692,
+      "height": 860,
+      "total_pixels": 1455120,
+      "basic_score": 0.8831956802674347,
+      "file_name": "professional-ai-voice-assistant-customer-service-call-center.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 90.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is highly relevant to the search query, showing a professional customer service agent with a headset in a call center environment. The overlay graphics effectively symbolize the conceptual integration of an AI voice assistant or intelligent support systems in customer service, representing elements like communication, ideas, analytics, and satisfaction. The image is exceptionally clear, well-composed, and free of watermarks, making it very high quality.",
+      "file_name": "professional-ai-voice-assistant-customer-service-call-center.jpg",
+      "caption": "A smiling male customer service agent, wearing a headset with a microphone and glasses, works attentively in a bright, modern call center office. Digital overlay graphics extend from a speech bubble with a headphone icon, showing a dotted line connecting to four distinct icons: a dollar sign for finance, a lightbulb for ideas, a bar chart for analytics, and a happy face for customer satisfaction. This visually represents the integration of an AI voice assistant or intelligent systems in enhancing customer support and business insights.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional image of AI voice assistant for call center and customer service",
+    "image_info": {
+      "url": "https://www.nextiva.com/cdn-cgi/image/width=1200,height=675,fit=cover,gravity=auto,format=auto/blog/wp-content/uploads/sites/10/2024/08/AI-Call-Center-2.webp?resize=1024,576",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 69324,
+      "width": 1200,
+      "height": 675,
+      "total_pixels": 810000,
+      "basic_score": 0.9161563141600546,
+      "file_name": "ai_voice_assistant_call_center_professional.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 98.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 97.0,
+      "explanation": "The image is exceptionally relevant to both the search query and the prompt. It directly features the text 'AI Call Center' and visually represents an AI voice assistant through futuristic headphones with glowing digital patterns worn by a professional-looking woman. The composition is strong, clarity is excellent, and there are no watermarks.",
+      "file_name": "ai_voice_assistant_call_center_professional.jpg",
+      "caption": "A professional conceptual image depicting an AI call center, featuring a woman wearing futuristic headphones with glowing blue, interconnected digital patterns, suggesting AI integration. The text 'AI Call Center' is prominently displayed in white on the left, set against a dark blue gradient background with subtle light rings. Small icons representing chat, money, and possibly learning are visible around the woman's head, emphasizing customer service and business functions.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional image of AI voice assistant for call center and customer service",
+    "image_info": {
+      "url": "https://cdn.prod.website-files.com/646676446cb9dc8974098e5d/66ddb3009c3d1210c6e454c8_thumbnail.jpeg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 74886,
+      "width": 1024,
+      "height": 512,
+      "total_pixels": 524288,
+      "basic_score": 0.8470847228899595,
+      "file_name": "professional_ai_powered_call_center_agents_headsets.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 90.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 92.0,
+      "explanation": "The image clearly depicts a modern call center environment with agents wearing headsets, aligning perfectly with 'customer service call center'. While it doesn't show a physical 'AI voice assistant', the professional agents are interacting with digital interfaces on tablets, implying the use of AI-powered tools or systems to enhance their service, which matches the 'AI voice assistant for call center' aspect of the prompt. The image is crisp, well-composed, and free of watermarks, making it highly suitable.",
+      "file_name": "professional_ai_powered_call_center_agents_headsets.jpg",
+      "caption": "A group of diverse and professional customer service agents wearing headsets and interacting with AI-powered digital interfaces on tablets in a modern, high-tech call center environment. The scene suggests efficient, technology-assisted customer support operations.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional healthcare AI assistant providing mental health support",
+    "image_info": {
+      "url": "https://static.wixstatic.com/media/a12a29_d2c633febd64429798382bea70699000~mv2.png/v1/fill/w_568,h_568,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/a12a29_d2c633febd64429798382bea70699000~mv2.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 135701,
+      "width": 568,
+      "height": 568,
+      "total_pixels": 322624,
+      "basic_score": 0.7983891851073763,
+      "file_name": "AI_in_Mental_Health_Care_Support_Infographic.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 95.0,
+      "watermark_score": 70.0,
+      "overall_score": 90.0,
+      "explanation": "The image is highly relevant, directly addressing the role of AI in mental health care and support with clear, professional design. Clarity is excellent. There is a 'Kana' brand logo in the bottom left corner, which acts as a watermark, slightly reducing the score in that category.",
+      "file_name": "AI_in_Mental_Health_Care_Support_Infographic.jpg",
+      "caption": "An infographic titled 'Role of AI in Mental Health' illustrating key applications such as Effective Diagnosis, Personalised Treatment Plans, Early Detection, Cognitive Modeling, Exposure Therapy, and Reducing Human Error. The design features a stylized glowing brain graphic on a dark background, connecting to these applications with lines and nodes. The 'Kana WELLBEING REIMAGINED' logo is visible in the bottom left corner.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional healthcare AI assistant providing mental health support",
+    "image_info": {
+      "url": "https://diplo-media.s3.eu-central-1.amazonaws.com/2025/07/AI_for_Mental_Health_v3_9rq2x2C.width-1300.png",
+      "img_format": "PNG",
+      "mode": "RGB",
+      "file_size": 130466,
+      "width": 1300,
+      "height": 542,
+      "total_pixels": 704600,
+      "basic_score": 0.8471383101611998,
+      "file_name": "ai_driven_mental_health_care_support_illustration.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is a highly relevant and clear vector illustration that perfectly captures the essence of mental health support through AI. It features a symbolic representation of a healthy mind (brain with flourishing plants), a therapy-like interaction between two individuals, and a digital interface with health metrics, strongly suggesting AI or technology-driven care. The professional quality and composition are excellent, with no watermarks.",
+      "file_name": "ai_driven_mental_health_care_support_illustration.jpg",
+      "caption": "A professional vector illustration depicting AI-driven mental health support. A silhouette of a human head containing a healthy brain intertwined with flourishing plants and flowers symbolizes mental well-being and growth. Adjacent to it, two individuals are engaged in a discussion, suggesting a therapy or counseling session. Connected by digital lines, a transparent interface displays health icons, charts, and data, indicating the integration of artificial intelligence and technology in providing comprehensive mental healthcare and support.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional healthcare AI assistant providing mental health support",
+    "image_info": {
+      "url": "https://themindtherapy.in/mindtherapy/blog-16.webp",
+      "img_format": "WEBP",
+      "mode": "RGB",
+      "file_size": 330846,
+      "width": 1024,
+      "height": 1024,
+      "total_pixels": 1048576,
+      "basic_score": 0.9563031547113666,
+      "file_name": "mental-health-AI-support-brain-technology-chatbot-counseling.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 98.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is exceptionally relevant to the search query and prompt. It clearly depicts AI integration with mental health support through a visually striking brain motif connected to 'Chatbot Counseling AI,' 'Mood Trackers,' and 'Mindfulness Assistant.' The clarity is excellent, and there are no watermarks, making it highly professional and suitable for the intended use.",
+      "file_name": "mental-health-AI-support-brain-technology-chatbot-counseling.jpg",
+      "caption": "A conceptual illustration featuring a human brain depicted with glowing digital circuits, symbolizing the integration of artificial intelligence in mental healthcare. Surrounding the brain are various icons and text labels including 'Chatbot Counseling AI,' 'Mood Trackers,' and 'Mindfulness Assistant,' highlighting different AI-powered tools for mental health support. The overall futuristic and tech-driven aesthetic effectively conveys the theme of advanced AI assistance for well-being.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional healthcare AI assistant providing mental health support",
+    "image_info": {
+      "url": "https://console.kr-asia.com/wp-content/uploads/2023/05/36-%E2%80%94-1.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 74486,
+      "width": 800,
+      "height": 615,
+      "total_pixels": 492000,
+      "basic_score": 0.8519331029782209,
+      "file_name": "ai-healthcare-brain-support-illustration.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 65.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 88.0,
+      "explanation": "The image clearly depicts elements of AI (brain with circuitry, binary code, gears) and professional healthcare (person in lab coat and mask). The presence of a person interacting with a computer and a healthcare professional suggests 'care' and 'support' through technology. However, the 'mental health' aspect is not explicitly represented; the brain imagery is more generic for AI/cognition rather than specifically mental well-being or therapy. The image quality and composition are excellent.",
+      "file_name": "ai-healthcare-brain-support-illustration.jpg",
+      "caption": "An illustrative depiction of artificial intelligence in a healthcare or research setting, featuring a person sitting at a computer, a medical professional in a lab coat and mask holding a clipboard, and a large translucent head with a circuit-filled brain, surrounded by binary code, gears, and molecular structures.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional healthcare AI assistant providing mental health support",
+    "image_info": {
+      "url": "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_768,h_408/https://www.cengn.ca/wp-content/uploads/2022/08/AI-and-Mental-Health-Blog-Graphics_Benefits-of-AI-1024x544.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 89436,
+      "width": 1024,
+      "height": 544,
+      "total_pixels": 557056,
+      "basic_score": 0.8567069582641066,
+      "file_name": "benefits_of_ai_in_mental_health_infographic.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 90.0,
+      "clarity_score": 100.0,
+      "watermark_score": 0.0,
+      "overall_score": 75.0,
+      "explanation": "The image is highly relevant to the search query and prompt as it directly addresses the benefits of AI in the mental health field, which aligns with 'AI care support' and 'AI assistant providing mental health support'. The clarity is excellent, with sharp text and vector graphics. However, a prominent 'Image Powered By CENGN' watermark significantly lowers the watermark score. The overall professional quality and composition are very good for an infographic, but the watermark impacts its utility.",
+      "file_name": "benefits_of_ai_in_mental_health_infographic.jpg",
+      "caption": "An infographic titled 'Benefits of AI in the Mental Health Field' featuring four key advantages: 'Better, Personalized Care' represented by a sparkling person icon; 'Shorter Wait Times' depicted by a stopwatch; 'Remove Barriers to Treatment' shown with a clipboard behind a construction barrier; and 'Boost Efficiency' illustrated by a gear with an upward-trending arrow. The bottom left corner contains a 'Image Powered By CENGN' watermark.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Modern technology infrastructure showing servers, cloud computing, and AI hardware",
+    "image_info": {
+      "url": "https://cdn.intuji.com/2023/10/Tech-Stack-1024x683.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 161361,
+      "width": 1024,
+      "height": 683,
+      "total_pixels": 699392,
+      "basic_score": 0.9094768958389345,
+      "file_name": "modern_data_center_server_racks_infrastructure.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 90.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 92.0,
+      "explanation": "The image is highly relevant to the search query 'technology stack infrastructure servers' as it clearly depicts rows of server racks in a data center environment. It also strongly matches the 'modern technology infrastructure' and 'servers' components of the prompt. While it provides the physical hardware foundation for 'cloud computing' and 'AI hardware,' these specific technologies are not explicitly identifiable or visually distinct in the image itself. The image quality is excellent, with sharp focus, good lighting, and no watermarks.",
+      "file_name": "modern_data_center_server_racks_infrastructure.jpg",
+      "caption": "A well-lit, professional photograph showcasing multiple rows of modern server racks filled with computing and networking equipment within a data center. The image highlights the intricate physical infrastructure of a technology stack, featuring various servers, cabling, and small display monitors, conveying a sense of robust and advanced IT infrastructure.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Modern technology infrastructure showing servers, cloud computing, and AI hardware",
+    "image_info": {
+      "url": "https://blocksandfiles.com/wp-content/uploads/2022/02/Ader-suppliers-and-cloud-infrastructure-stack.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 194206,
+      "width": 950,
+      "height": 545,
+      "total_pixels": 517750,
+      "basic_score": 0.871150353996485,
+      "file_name": "cloud_infrastructure_stack_overview_tech_companies.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 88.0,
+      "clarity_score": 90.0,
+      "watermark_score": 95.0,
+      "overall_score": 90.0,
+      "explanation": "The image is highly relevant to the search query, depicting a comprehensive cloud infrastructure stack with mentions of servers and various technology companies. It clearly illustrates modern cloud computing. However, it does not specifically show 'AI hardware' as requested in the prompt, focusing more on software and service layers. The clarity is excellent, with legible text and logos, and it only contains a non-intrusive source attribution.",
+      "file_name": "cloud_infrastructure_stack_overview_tech_companies.jpg",
+      "caption": "A detailed diagram illustrating 'The Cloud Infrastructure Stack,' categorizing various technology components and companies. It displays layers such as DevOps, Operational Databases, Event Streaming, Infrastructure Automation, Run-Time Environments (VMs, Kubernetes), and Infrastructure Hardware (servers, storage, switches). The diagram also highlights major cloud providers like AWS, Azure, and Google Cloud, alongside categories like Monitoring/Observability, Security/Compliance, Data Management/Data Protection, and Data Analytics/Business Intelligence, featuring numerous company logos.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Modern technology infrastructure showing servers, cloud computing, and AI hardware",
+    "image_info": {
+      "url": "https://aquamoonblog.wordpress.com/wp-content/uploads/2013/07/data-centre-architecture.png",
+      "img_format": "PNG",
+      "mode": "RGB",
+      "file_size": 55655,
+      "width": 1280,
+      "height": 720,
+      "total_pixels": 921600,
+      "basic_score": 0.9154042133429607,
+      "file_name": "scalable_technology_stack_diagram_cloud_servers.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 85.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 90.0,
+      "explanation": "The image is a very clear and professional diagram illustrating a scalable technology stack, covering servers, cloud infrastructure, and various software layers. It perfectly matches the 'technology stack infrastructure servers' aspect of the query and addresses modern infrastructure, servers, and cloud computing from the prompt. However, it does not explicitly show 'AI hardware' as requested in the prompt, which slightly reduces its overall relevance score for the prompt specifically. There are no watermarks, and the clarity is excellent.",
+      "file_name": "scalable_technology_stack_diagram_cloud_servers.jpg",
+      "caption": "A detailed diagram illustrating a highly scalable technology stack capable of running on private hardware or cloud-based infrastructure. The stack layers include web and mobile applications, SOAP/REST web services, Nginx and IIS web servers, MQ server (Redis), caching server (Redis, Memcached, Riak), distributed processing (Hadoop), and databases (PostgreSQL, Mongo, Couch NoSQL). It supports both Linux and Windows-based virtual machines, OS/Hypervisors with OpenNebula, and relies on x86/x64 hardware based on Facebook Open standards, distinguishing between 'Your Data Centre' and 'Cloud Services Provider' components.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Modern technology infrastructure showing servers, cloud computing, and AI hardware",
+    "image_info": {
+      "url": "https://www.simform.com/wp-content/uploads/2022/08/Cloud-Technologies.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 140994,
+      "width": 1434,
+      "height": 868,
+      "total_pixels": 1244712,
+      "basic_score": 0.9114613288567595,
+      "file_name": "cloud_tech_stack_infrastructure_servers_diagram.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 88.0,
+      "clarity_score": 100.0,
+      "watermark_score": 85.0,
+      "overall_score": 88.0,
+      "explanation": "The image is a clear and well-structured diagram illustrating a cloud technology stack, explicitly detailing Infrastructure as a Service, Platform as a Service, and Software as a Service, along with key components like servers, network, and storage. It highly matches the search query and most aspects of the prompt, covering modern technology infrastructure, servers, and cloud computing. However, it does not specifically depict AI hardware, and a small company logo is present in the bottom right corner.",
+      "file_name": "cloud_tech_stack_infrastructure_servers_diagram.jpg",
+      "caption": "A clear and professionally designed diagram illustrating a cloud technology stack, categorizing services into Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS). Key components like security, network, servers, storage, compute, services, and visualization/API are shown, highlighting modern infrastructure principles.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Modern AI receptionist helping customers in a professional office environment",
+    "image_info": {
+      "url": "https://54.157.35.145/wp-content/uploads/DALL%C2%B7E-2024-05-10-12.35.29-A-modern-office-reception-desk-with-a-futuristic-smart-AI-receptionist.-The-scene-includes-a-sleek-stylish-reception-area-with-a-high-tech-desk-feat.webp",
+      "img_format": "WEBP",
+      "mode": "RGB",
+      "file_size": 260422,
+      "width": 1792,
+      "height": 769,
+      "total_pixels": 1378048,
+      "basic_score": 0.8752199792981155,
+      "file_name": "modern_ai_receptionist_office_tech.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 98.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is highly relevant, perfectly matching the search query and prompt by featuring a modern AI receptionist at a sleek reception desk within a professional, contemporary office environment. The clarity is excellent, and there are no watermarks. The overall composition and professional quality are outstanding, making it an ideal visual for the intended theme.",
+      "file_name": "modern_ai_receptionist_office_tech.jpg",
+      "caption": "A futuristic humanoid AI receptionist stands ready at a minimalist reception desk in a brightly lit, modern office lobby. The sophisticated robot features glowing blue circuitry details, symbolizing advanced technology. The office space is characterized by glass walls, open-plan workstations, and a large window offering a city skyline view, conveying a high-tech and professional atmosphere. The desk prominently displays an illuminated 'AI' icon.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Modern AI receptionist helping customers in a professional office environment",
+    "image_info": {
+      "url": "https://assets.seobotai.com/cdn-cgi/image/quality=75,w=1536,h=1024/dialzara.com/674533b5263f334b89cc578c-1732590309786.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 103645,
+      "width": 1536,
+      "height": 857,
+      "total_pixels": 1316352,
+      "basic_score": 0.9115144292473869,
+      "file_name": "modern_ai_reception_office_environment.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 98.0,
+      "watermark_score": 100.0,
+      "overall_score": 97.0,
+      "explanation": "The image is highly relevant, perfectly depicting a modern office reception with a clear 'AI reception' display, aligning well with the search query and prompt. The clarity, composition, and professional aesthetics are excellent, and there are no visible watermarks.",
+      "file_name": "modern_ai_reception_office_environment.jpg",
+      "caption": "A bright and spacious modern office reception area, featuring a large, illuminated screen displaying 'AI reception' and a technological interface. A man in business casual attire stands, looking at the screen, suggesting interaction with the AI system. To the left, a female human receptionist is seated at a sleek, white reception desk. The space is well-lit with natural light from large windows and decorated with several large potted plants, emphasizing a professional, contemporary, and technologically advanced atmosphere.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Modern AI receptionist helping customers in a professional office environment",
+    "image_info": {
+      "url": "https://petapixel.com/assets/uploads/2021/03/AI-Powered-Virtual-People-Can-Now-Take-Over-Office-Receptionist-Duties.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 133207,
+      "width": 1600,
+      "height": 840,
+      "total_pixels": 1344000,
+      "basic_score": 0.9043573679793662,
+      "file_name": "man_ai_receptionist_office_kiosk_interaction.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 98.0,
+      "clarity_score": 90.0,
+      "watermark_score": 100.0,
+      "overall_score": 92.0,
+      "explanation": "The image is exceptionally relevant to both the search query and prompt, clearly depicting a man interacting with a modern AI receptionist kiosk in a professional office environment. The clarity is very good, allowing details on the screen to be visible. There are no watermarks on the image itself. The composition and lighting are professional, contributing to a high overall quality.",
+      "file_name": "man_ai_receptionist_office_kiosk_interaction.jpg",
+      "caption": "A man in a smart jacket and shirt interacts with a sleek, vertical digital AI receptionist kiosk in a modern office reception area. The touchscreen displays a virtual female avatar at the top, along with a directory of contacts and options for 'Deliveries' and 'Receptionist' below, all within an interface branded 'Vextron Enterprises.' The professional setting includes glass doors and contemporary ceiling lighting in the background.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Modern AI receptionist helping customers in a professional office environment",
+    "image_info": {
+      "url": "https://cdn.prod.website-files.com/646676446cb9dc8974098e5d/66ddab825dd3651838659ae5_thumbnail.jpeg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 66506,
+      "width": 1024,
+      "height": 512,
+      "total_pixels": 524288,
+      "basic_score": 0.8461152119593517,
+      "file_name": "modern_ai_robot_receptionists_office_lobby.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 100.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is perfectly relevant to the search query and prompt, showcasing modern AI receptionists in a professional office environment. It exhibits excellent clarity, sharpness, and high-quality composition, effectively conveying a futuristic yet realistic scene. No watermarks are present.",
+      "file_name": "modern_ai_robot_receptionists_office_lobby.jpg",
+      "caption": "Two sleek, modern white humanoid AI robots stand in a professional and contemporary office reception area. One robot is positioned near a curved reception desk where a female human receptionist is working on a computer. The second robot stands prominently in the foreground beside a minimalist white podium with a tablet. The office features warm wooden wall panels, potted plants, and sophisticated ceiling lighting, creating an inviting and technologically advanced atmosphere.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Modern AI receptionist helping customers in a professional office environment",
+    "image_info": {
+      "url": "https://cdn.prod.website-files.com/646676446cb9dc8974098e5d/66cc8ea38d12bcf012832c4b_thumbnail.jpeg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 102962,
+      "width": 1024,
+      "height": 512,
+      "total_pixels": 524288,
+      "basic_score": 0.8502840219597253,
+      "file_name": "modern-office-reception-digital-ai-kiosk.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 80.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image effectively captures a modern, professional office reception environment with a prominent digital kiosk displaying an AI-themed image and 'ATI' branding, which strongly suggests an AI presence. While the 'AI receptionist' aspect is conveyed through the display, there is no direct visual of it actively 'helping customers' as described in the prompt. However, the setting and the digital screen align well with the overall concept. The image boasts excellent clarity, composition, and professional quality with no watermarks.",
+      "file_name": "modern-office-reception-digital-ai-kiosk.jpg",
+      "caption": "A wide shot of a sleek, modern office lobby featuring a prominent white digital display kiosk. The kiosk screen shows 'ATI' branding and an image of a futuristic humanoid robot, suggesting an advanced AI or technology focus. Several business professionals and customers in business casual attire are seen walking and conversing within the brightly lit, contemporary reception area, characterized by wooden paneling, large windows, and a sophisticated design. The scene portrays a professional environment integrating advanced technology.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional diverse African technology team working in modern Lagos office",
+    "image_info": {
+      "url": "https://c76c7bbc41.mjedge.net/wp-content/uploads/tc/2023/01/Arm-Techstars.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 259687,
+      "width": 2048,
+      "height": 1167,
+      "total_pixels": 2390016,
+      "basic_score": 0.6468999805283844,
+      "file_name": "diverse_african_tech_team_group_photo_lagos.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 88.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 90.0,
+      "explanation": "The image strongly depicts a diverse group of African technology professionals, with individuals wearing branded t-shirts from various tech companies. The clarity and composition are excellent, and there are no watermarks. While it's a group photo rather than showing them actively 'working' in an office, and the background is a simple wall not overtly 'modern office' scenery, it effectively represents the prompt's core elements of a professional, diverse African tech team. The location 'Lagos' is inferred.",
+      "file_name": "diverse_african_tech_team_group_photo_lagos.jpg",
+      "caption": "A large group of diverse African technology professionals, including men and women, smile and pose for a group photograph. Many individuals are wearing branded t-shirts from various tech companies such as Oystr, Salad, Keza, Peppa, and Techstars. They are arranged in multiple rows against a plain, dark gray background, conveying a professional and collaborative environment typical of an innovative African tech ecosystem.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional diverse African technology team working in modern Lagos office",
+    "image_info": {
+      "url": "https://c76c7bbc41.mjedge.net/wp-content/uploads/tc/2021/10/Ydev-1.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 69047,
+      "width": 512,
+      "height": 341,
+      "total_pixels": 174592,
+      "basic_score": 0.744162573430748,
+      "file_name": "diverse-african-tech-team-office-lagos-group-photo.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 90.0,
+      "explanation": "The image is highly relevant, depicting a large, diverse group of African professionals in a modern office setting, perfectly matching the search query and prompt. Clarity is excellent, with sharp focus and good lighting, and there are no watermarks. The overall composition effectively conveys a professional and collaborative team atmosphere.",
+      "file_name": "diverse-african-tech-team-office-lagos-group-photo.jpg",
+      "caption": "A vibrant and diverse team of African technology professionals poses for a group photo in a modern office or coworking space, indicative of a tech hub like Lagos. The team members, comprising men and women of various ages and backgrounds, are smiling and looking at the camera, conveying a positive, collaborative, and dynamic work environment. The well-lit room features a projector, wall fans, and motivational wall art, typical of a modern tech startup or educational setting.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Professional diverse African technology team working in modern Lagos office",
+    "image_info": {
+      "url": "https://www.cio.com/wp-content/uploads/2025/02/307140-0-66238300-1739266100-diversity-in-tech-black-businesswoman-african-american-shutterstock-100919288-orig.jpg?quality=50&strip=all",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 216624,
+      "width": 2000,
+      "height": 1315,
+      "total_pixels": 2630000,
+      "basic_score": 0.5943919149665075,
+      "file_name": "professional_african_woman_modern_office.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 70.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image features a professional African woman in a modern office environment, aligning well with the 'professional diverse African' and 'modern office' aspects of the query and prompt. However, there are no explicit visual cues to suggest a 'tech team' or the specific location of 'Lagos'. The 'team working' aspect is also not strongly evident as the main subject is posing, and background figures are blurred and not actively collaborating.",
+      "file_name": "professional_african_woman_modern_office.jpg",
+      "caption": "A confident and smiling African businesswoman stands with her arms crossed in a modern, brightly lit office lobby or open-plan workspace. She wears a grey blazer over a patterned white blouse and has her hair styled in an elegant updo. In the blurred background, other professionals, also appearing to be African, are seated and conversing, suggesting a collaborative or communal work environment with a contemporary design featuring glass partitions and a staircase.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Emergency response coordination with AI technology helping first responders",
+    "image_info": {
+      "url": "https://www.capitalnumbers.com/blog/wp-content/uploads/2024/07/How-AI-is-Optimizing-Emergency-Response-for-a-Safer-Future_02.png",
+      "img_format": "PNG",
+      "mode": "P",
+      "file_size": 145707,
+      "width": 750,
+      "height": 484,
+      "total_pixels": 363000,
+      "basic_score": 0.8108590006995773,
+      "file_name": "ai_optimizing_emergency_response_coordination.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 90.0,
+      "watermark_score": 50.0,
+      "overall_score": 80.0,
+      "explanation": "The image is highly relevant, directly addressing 'How AI is Optimizing Emergency Response for a Safer Future' with visual elements representing AI integration (robot, facial recognition, dispatcher, drone, traffic management). Clarity is excellent with crisp graphics and readable text. However, a noticeable watermark 'capitalnumbers.com' is present on the right side, which reduces the watermark score significantly, and subsequently impacts the overall score.",
+      "file_name": "ai_optimizing_emergency_response_coordination.jpg",
+      "caption": "A conceptual graphic illustrating how Artificial Intelligence (AI) optimizes emergency response, featuring a central AI robot connected to various applications such as facial recognition for identification, a call center operator for dispatch, a drone for aerial surveillance, and smart traffic management. The title states 'How AI is Optimizing Emergency Response for a Safer Future,' against a dark blue background with glowing network lines.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Emergency response coordination with AI technology helping first responders",
+    "image_info": {
+      "url": "https://emsricky.com/wp-content/uploads/2024/08/Emergency-Dispatch-Systems-and-AI-ezgif.com-webp-to-jpg-converter.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 552896,
+      "width": 1792,
+      "height": 1024,
+      "total_pixels": 1835008,
+      "basic_score": 0.8160113312363731,
+      "file_name": "emergency_response_ai_coordination_control_room.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 90.0,
+      "watermark_score": 100.0,
+      "overall_score": 92.0,
+      "explanation": "The image is highly relevant to the search query and prompt, depicting an operator in a high-tech control room surrounded by numerous screens displaying maps and data, strongly suggesting AI-driven emergency response coordination. The clarity is excellent, and there are no watermarks. The overall composition and professional quality are very high.",
+      "file_name": "emergency_response_ai_coordination_control_room.jpg",
+      "caption": "A skilled operator, possibly a first responder coordinator, wearing a headset and uniform, meticulously monitors multiple large screens in a futuristic control room. The screens display global maps, intricate data visualizations, and city grid layouts, indicating advanced AI technology for emergency response and coordination efforts. The high-tech environment underscores the role of intelligent systems in assisting first responders and enhancing situational awareness during critical events.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Emergency response coordination with AI technology helping first responders",
+    "image_info": {
+      "url": "https://ambiq.com/wp-content/uploads/2023/09/AI-in-disaster-response-Fire-analytics-1200x800-1.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 93563,
+      "width": 1200,
+      "height": 800,
+      "total_pixels": 960000,
+      "basic_score": 0.9324425014453216,
+      "file_name": "ai_emergency_response_coordination_data_analytics.jpg"
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 98.0,
+      "clarity_score": 93.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image powerfully visualizes 'emergency response' with its fiery, blurry background and 'AI coordination' through the intricate, futuristic data overlays. The graphical elements are sharp and clearly represent advanced technology and data analysis. There are no watermarks, and the overall composition is highly professional and impactful, making it an excellent match for the prompt and query.",
+      "file_name": "ai_emergency_response_coordination_data_analytics.jpg",
+      "caption": "A digital composite image illustrating the integration of artificial intelligence and advanced data analytics in emergency response. The foreground features transparent, futuristic dashboards with various charts, graphs, and numerical data, overlaid on a blurred background depicting a large-scale disaster, possibly a wildfire or conflagration. This visually represents AI technology aiding in coordination and strategic decision-making for first responders in crisis management.",
+      "recommend": true,
+      "error": ""
+    }
+  }
+]
