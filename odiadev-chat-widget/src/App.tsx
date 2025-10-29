@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Mic, MicOff, Send, Volume2, Loader2 } from 'lucide-react';
-import { supabase } from './lib/supabase';
 
+// Define types
 interface Message {
   role: 'user' | 'assistant';
   content: string;
@@ -13,8 +13,13 @@ interface OdiaWidgetConfig {
   voice?: string;
   autoPlayAudio?: boolean;
   theme?: 'light' | 'dark';
+  groqApiKey?: string;
+  minimaxApiKey?: string;
+  minimaxGroupId?: string;
+  minimaxModel?: string;
 }
 
+// Declare global window object
 declare global {
   interface Window {
     ODIA_WIDGET?: OdiaWidgetConfig;
@@ -22,18 +27,18 @@ declare global {
 }
 
 function App() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [inputText, setInputText] = useState('');
-  const [isListening, setIsListening] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [config] = useState<OdiaWidgetConfig>(() => window.ODIA_WIDGET || {});
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const recognitionRef = useRef<any>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const [messages, setMessages] = React.useState<Message[]>([]);
+  const [inputText, setInputText] = React.useState('');
+  const [isListening, setIsListening] = React.useState(false);
+  const [isProcessing, setIsProcessing] = React.useState(false);
+  const [isSpeaking, setIsSpeaking] = React.useState(false);
+  const [config] = React.useState<OdiaWidgetConfig>(() => window.ODIA_WIDGET || {});
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
+  const recognitionRef = React.useRef<any>(null);
+  const audioRef = React.useRef<HTMLAudioElement>(null);
 
   // Initialize speech recognition with Nigerian English
-  useEffect(() => {
+  React.useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
       const recognition = new SpeechRecognition();
@@ -62,7 +67,7 @@ function App() {
   }, []);
 
   // Auto-scroll to bottom
-  useEffect(() => {
+  React.useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
@@ -95,18 +100,42 @@ function App() {
     setIsProcessing(true);
 
     try {
-      // Call Groq chat endpoint
-      const { data: chatData, error: chatError } = await supabase.functions.invoke('chat-groq', {
-        body: {
-          message: inputText,
-          apiKey: config.apiKey,
-          conversationHistory: messages.slice(-10) // Last 10 messages for context
-        }
+      // Call Groq chat endpoint directly
+      const groqApiKey = config.groqApiKey || 'YOUR_GROQ_API_KEY';
+      const conversationHistory = messages.slice(-10).map(msg => ({
+        role: msg.role,
+        content: msg.content
+      }));
+
+      const messagesForGroq = [
+        {
+          role: 'system',
+          content: 'You are a helpful AI assistant optimized for Nigerian English and Pidgin. Provide clear, concise responses with cultural awareness. Keep responses under 100 words for fast TTS conversion. You know all about the company staff, projects, and etc.'
+        },
+        ...conversationHistory,
+        { role: 'user', content: inputText }
+      ];
+
+      const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${groqApiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'llama-3.1-8b-instant',
+          messages: messagesForGroq,
+          max_tokens: 150,
+          temperature: 0.7
+        })
       });
 
-      if (chatError) throw chatError;
+      if (!groqResponse.ok) {
+        throw new Error(`Groq API error: ${groqResponse.status}`);
+      }
 
-      const aiResponse = chatData.data?.response || chatData.response || 'Sorry, I could not process that.';
+      const groqData = await groqResponse.json();
+      const aiResponse = groqData.choices[0]?.message?.content || 'Sorry, I could not process that.';
       
       const assistantMessage: Message = {
         role: 'assistant',
@@ -138,17 +167,33 @@ function App() {
     try {
       setIsSpeaking(true);
       
-      const { data: ttsData, error: ttsError } = await supabase.functions.invoke('tts-minimax', {
-        body: {
+      // Call Minimax TTS API directly
+      const minimaxApiKey = config.minimaxApiKey || 'YOUR_MINIMAX_API_KEY';
+      const minimaxGroupId = config.minimaxGroupId || 'YOUR_MINIMAX_GROUP_ID';
+      const minimaxModel = config.minimaxModel || 'speech-02-hd';
+      
+      const ttsResponse = await fetch('https://api.minimax.chat/v1/tts', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${minimaxApiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
           text,
-          voice: config.voice || 'nigerian-male',
-          apiKey: config.apiKey
-        }
+          voice: config.voice || 'moss_audio_4e6eb029-ab89-11f0-a74c-2a7a0b4baedc', // Austyn african male default
+          speed: 1.0,
+          pitch: 1.0,
+          model: minimaxModel,
+          group_id: minimaxGroupId
+        })
       });
 
-      if (ttsError) throw ttsError;
+      if (!ttsResponse.ok) {
+        throw new Error(`Minimax TTS error: ${ttsResponse.status}`);
+      }
 
-      const audioUrl = ttsData.data?.audioUrl || ttsData.audioUrl;
+      const ttsData = await ttsResponse.json();
+      const audioUrl = ttsData.audio_url || ttsData.url;
       
       if (audioUrl && audioRef.current) {
         audioRef.current.src = audioUrl;
@@ -162,7 +207,7 @@ function App() {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e: any) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
@@ -183,7 +228,7 @@ function App() {
               Nigerian English Optimized
             </p>
           </div>
-          {config.apiKey && (
+          {(config.groqApiKey || config.minimaxApiKey) && (
             <div className="flex items-center gap-2">
               <div className={`w-2 h-2 rounded-full ${isDark ? 'bg-green-400' : 'bg-green-500'}`}></div>
               <span className="text-xs">Connected</span>
