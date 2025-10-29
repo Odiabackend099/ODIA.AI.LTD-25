@@ -1,6 +1,89 @@
 // ODIADEV AI LTD - Website JavaScript
 
+// Add geo-targeting functionality
+const GeoTargeting = {
+    // Default region settings
+    currentRegion: 'global',
+    regionData: {
+        'ng': {
+            name: 'Nigeria',
+            currency: '₦',
+            language: 'English/Pidgin',
+            dialCode: '+234'
+        },
+        'ke': {
+            name: 'Kenya',
+            currency: 'KSh',
+            language: 'English/Swahili',
+            dialCode: '+254'
+        },
+        'gh': {
+            name: 'Ghana',
+            currency: '₵',
+            language: 'English',
+            dialCode: '+233'
+        },
+        'global': {
+            name: 'Africa',
+            currency: 'Various',
+            language: 'Multiple',
+            dialCode: '+XXX'
+        }
+    },
+    
+    // Get user's country based on IP
+    async getUserCountry() {
+        try {
+            // In a real implementation, this would call a geo-location API
+            // For now, we'll default to Nigeria as the primary market
+            return 'ng';
+        } catch (error) {
+            console.warn('Could not determine user location, defaulting to global');
+            return 'global';
+        }
+    },
+    
+    // Update content based on region
+    updateRegionalContent(countryCode) {
+        this.currentRegion = countryCode || 'global';
+        const region = this.regionData[this.currentRegion] || this.regionData['global'];
+        
+        // Update any region-specific elements
+        const regionElements = document.querySelectorAll('[data-region-content]');
+        regionElements.forEach(element => {
+            const key = element.dataset.regionContent;
+            if (region[key]) {
+                element.textContent = region[key];
+            }
+        });
+        
+        // Add region-specific CSS class to body
+        document.body.className = document.body.className.replace(/region-\w+/g, '');
+        document.body.classList.add(`region-${this.currentRegion}`);
+        
+        // Store in localStorage for future visits
+        localStorage.setItem('preferredRegion', this.currentRegion);
+    },
+    
+    // Initialize geo-targeting
+    async init() {
+        // Check if user has a preferred region stored
+        const storedRegion = localStorage.getItem('preferredRegion');
+        if (storedRegion && this.regionData[storedRegion]) {
+            this.updateRegionalContent(storedRegion);
+            return;
+        }
+        
+        // Otherwise, detect based on IP
+        const countryCode = await this.getUserCountry();
+        this.updateRegionalContent(countryCode);
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize geo-targeting
+    GeoTargeting.init().catch(console.error);
+    
     // Mobile Navigation Toggle
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -330,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
     backToTopBtn.style.cssText = `
         position: fixed;
         bottom: 30px;
-        right: 30px;
+        left: 30px;
         width: 50px;
         height: 50px;
         background-color: var(--accent-gold);
