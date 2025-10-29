@@ -9,7 +9,15 @@ function App() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isInterrupting, setIsInterrupting] = useState(false);
   const [streamingResponse, setStreamingResponse] = useState('');
-  const [config] = useState(() => window.ODIA_WIDGET || {});
+  const [config, setConfig] = useState({
+    groqApiKey: 'YOUR_GROQ_API_KEY',
+    minimaxApiKey: 'YOUR_MINIMAX_API_KEY',
+    minimaxGroupId: 'YOUR_MINIMAX_GROUP_ID',
+    minimaxModel: 'speech-02-hd',
+    voice: 'moss_audio_4e6eb029-ab89-11f0-a74c-2a7a0b4baedc',
+    theme: 'light',
+    autoPlayAudio: true
+  });
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
   const audioRef = useRef(null);
@@ -27,6 +35,39 @@ function App() {
   // Voice Activity Detection parameters
   const VAD_THRESHOLD = 0.01;
   const SILENCE_DURATION = 1500; // ms
+
+  // Load configuration from API or window object
+  useEffect(() => {
+    const loadConfig = async () => {
+      try {
+        // First check if config is provided via window object
+        if (window.ODIA_WIDGET) {
+          setConfig(prev => ({
+            ...prev,
+            ...window.ODIA_WIDGET
+          }));
+          return;
+        }
+        
+        // Try to load from API endpoint
+        const response = await fetch('/api/widget-config');
+        if (response.ok) {
+          const apiConfig = await response.json();
+          // Only update if we have actual values (not null)
+          setConfig(prev => ({
+            ...prev,
+            ...Object.fromEntries(
+              Object.entries(apiConfig).filter(([_, v]) => v !== null)
+            )
+          }));
+        }
+      } catch (error) {
+        console.log('Could not load configuration from API, using defaults');
+      }
+    };
+    
+    loadConfig();
+  }, []);
 
   // Debug logging
   console.log('Widget loaded with config:', config);
@@ -357,7 +398,7 @@ function App() {
         let errorMessageContent = 'Sorry, there was an error processing your request.';
         
         if (error.message.includes('GROQ_API_KEY')) {
-          errorMessageContent = 'GROQ API key not configured. Please set GROQ_API_KEY in window.ODIA_WIDGET configuration.';
+          errorMessageContent = 'GROQ API key not configured. Please set GROQ_API_KEY in environment variables or window.ODIA_WIDGET configuration.';
         } else if (error.message.includes('API error')) {
           errorMessageContent = `API error: ${error.message}`;
         }
@@ -396,6 +437,7 @@ function App() {
       ttsAbortControllerRef.current = new AbortController();
       
       const minimaxModel = config.minimaxModel || 'speech-02-hd';
+      const voice = config.voice || 'moss_audio_4e6eb029-ab89-11f0-a74c-2a7a0b4baedc';
       
       const ttsResponse = await fetch('https://api.minimax.chat/v1/tts', {
         method: 'POST',
@@ -405,7 +447,7 @@ function App() {
         },
         body: JSON.stringify({
           text,
-          voice: config.voice || 'moss_audio_4e6eb029-ab89-11f0-a74c-2a7a0b4baedc', // Austyn african male default
+          voice: voice,
           speed: 1.0,
           pitch: 1.0,
           model: minimaxModel,
@@ -474,7 +516,7 @@ function App() {
     if (!hasGroqKey || !hasMinimaxKey) {
       const errorMessage = {
         role: 'assistant',
-        content: 'API keys not configured. Please set GROQ_API_KEY and MINIMAX_API_KEY in window.ODIA_WIDGET configuration.',
+        content: 'API keys not configured. Please set environment variables or configure via window.ODIA_WIDGET.',
         timestamp: new Date()
       };
       setMessages(prev => [...prev, {role: 'user', content: inputText, timestamp: new Date()}, errorMessage]);
@@ -521,7 +563,7 @@ function App() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            {(config.groqApiKey || config.minimaxApiKey) && (
+            {(config.groqApiKey && config.groqApiKey !== 'YOUR_GROQ_API_KEY') && (
               <div className="flex items-center gap-2">
                 <div className={`w-2 h-2 rounded-full ${isDark ? 'bg-green-400' : 'bg-green-500'}`}></div>
                 <span className="text-xs">Connected</span>
