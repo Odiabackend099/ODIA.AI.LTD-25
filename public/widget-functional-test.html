@@ -89,8 +89,14 @@
                 <strong>Important:</strong> You must configure API keys for the widget to function properly!
             </div>
             
-            <h3>Step 1: Enter Your API Keys</h3>
-            <p>Enter your Groq and Minimax API keys below:</p>
+            <h3>Step 1: Configure Environment Variables in Vercel</h3>
+            <p>To properly configure the widget, set these environment variables in your Vercel project:</p>
+            <pre>GROQ_API_KEY=your_groq_api_key_here
+MINIMAX_API_KEY=your_minimax_api_key_here
+MINIMAX_GROUP_ID=your_minimax_group_id_here</pre>
+            
+            <h3>Step 2: Test with Manual Entry (for development)</h3>
+            <p>For testing purposes, you can manually enter your API keys below:</p>
             
             <label for="groqKey">Groq API Key:</label>
             <input type="password" id="groqKey" placeholder="Enter your Groq API key">
@@ -102,8 +108,13 @@
             <input type="text" id="minimaxGroup" placeholder="Enter your Minimax group ID">
             
             <button onclick="configureWidget()">Configure Widget</button>
+            <button onclick="loadFromEnvironment()">Load from Environment</button>
             
-            <h3>Step 2: Test the Widget</h3>
+            <div id="status" class="status loading" style="display: none;">
+                Loading configuration...
+            </div>
+            
+            <h3>Step 3: Test the Widget</h3>
             <p>After configuring your API keys:</p>
             <ol>
                 <li>Click the microphone button in the widget to start speaking</li>
@@ -170,6 +181,31 @@
             // Reload the iframe to apply configuration
             const iframe = document.querySelector('iframe');
             iframe.src = iframe.src;
+        }
+        
+        // Load configuration from environment variables
+        async function loadFromEnvironment() {
+            const statusEl = document.getElementById('status');
+            statusEl.style.display = 'block';
+            
+            try {
+                // In a real implementation, this would call an API endpoint
+                // that retrieves configuration from environment variables
+                statusEl.textContent = 'Environment configuration would be loaded here in production';
+                statusEl.className = 'status success';
+                
+                // For demo purposes, we'll show a message
+                setTimeout(() => {
+                    statusEl.style.display = 'none';
+                    alert('In a production environment, this would load configuration from Vercel environment variables.');
+                }, 2000);
+            } catch (error) {
+                statusEl.textContent = 'Error loading configuration: ' + error.message;
+                statusEl.className = 'status warning';
+                setTimeout(() => {
+                    statusEl.style.display = 'none';
+                }, 3000);
+            }
         }
     </script>
 </body>
