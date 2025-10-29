@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed ODIADEV Chat Widget Example</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .main-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .feature-card {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            color: #4f46e5;
+        }
+        .instructions {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+        pre {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+        }
+        .note {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ODIADEV Voice AI Chat Widget</h1>
+            <p>Embedded seamlessly on any website with full voice capabilities</p>
+        </header>
+        
+        <div class="content">
+            <div class="main-content">
+                <h2>Website Content</h2>
+                <p>This is an example of a website with the ODIADEV Voice AI chat widget embedded. The widget appears as a floating button in the bottom right corner and can be toggled open/closed.</p>
+                
+                <div class="feature-card">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>🎙️ Voice-to-text using Web Speech API (Nigerian English optimized)</li>
+                        <li>🧠 AI processing with Groq's llama-3.1-8b-instant model</li>
+                        <li>🔊 Text-to-speech with Minimax Nigerian voices</li>
+                        <li>⚡ Sub-250ms end-to-end latency</li>
+                        <li>🌐 Works on all modern browsers</li>
+                    </ul>
+                </div>
+                
+                <div class="instructions">
+                    <h3>How to Embed on Your Website</h3>
+                    <p>Add this code to your website's HTML:</p>
+                    <pre><code>&lt;!-- Configure API keys (optional, can use environment variables) --&gt;
+&lt;script&gt;
+window.ODIA_WIDGET = {
+  groqApiKey: 'YOUR_GROQ_API_KEY',      // Optional if set in environment
+  minimaxApiKey: 'YOUR_MINIMAX_API_KEY', // Optional if set in environment
+  minimaxGroupId: 'YOUR_MINIMAX_GROUP_ID', // Optional if set in environment
+  theme: 'light' // or 'dark'
+};
+&lt;/script&gt;
+
+&lt;!-- Load the widget --&gt;
+&lt;iframe 
+  src="https://odiadev-web-2025-lunc-3l36edbao-odia-backends-projects.vercel.app/widget"
+  style="position: fixed; bottom: 24px; right: 24px; width: 96px; height: 96px; border: none; z-index: 1000;"
+  title="ODIADEV Voice AI Chat"&gt;
+&lt;/iframe&gt;</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>Note:</strong> The widget automatically loads configuration from environment variables if not provided via window.ODIA_WIDGET.
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3>Benefits</h3>
+                <div class="feature-card">
+                    <h3>Easy Integration</h3>
+                    <p>Simple iframe embed with no dependencies</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Zero Configuration</h3>
+                    <p>Works out of the box with environment variables</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Fully Responsive</h3>
+                    <p>Adapts to any screen size</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Secure</h3>
+                    <p>API keys never exposed to client</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <h2>Best Practices for Chat Widgets</h2>
+            <ul>
+                <li>✅ Position in bottom-right corner for familiarity</li>
+                <li>✅ Use recognizable chat icon</li>
+                <li>✅ Make easily dismissible</li>
+                <li>✅ Don't obstruct main content</li>
+                <li>✅ Provide visual feedback during interactions</li>
+                <li>✅ Support both voice and text input</li>
+                <li>✅ Optimize for mobile devices</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ODIADEV Chat Widget Embed -->
+    <iframe 
+        src="/widget" 
+        style="position: fixed; bottom: 24px; right: 24px; width: 96px; height: 96px; border: none; z-index: 1000;"
+        title="ODIADEV Voice AI Chat">
+    </iframe>
+</body>
+</html>
