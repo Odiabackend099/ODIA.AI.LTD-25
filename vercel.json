@@ -18,7 +18,26 @@
     {
       "source": "/api",
       "destination": "/api/index.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/public/$1"
     }
   ],
-  "trailingSlash": false
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "x-vercel-remove-auth-header",
+          "value": "1"
+        },
+        {
+          "key": "x-vercel-protection-bypass",
+          "value": "true"
+        }
+      ]
+    }
+  ]
 }
