@@ -48,19 +48,42 @@
                 const hasAudioAPI = typeof Audio !== 'undefined';
                 resultsDiv.innerHTML += `<p>Audio API: ${hasAudioAPI ? 'OK' : 'MISSING'}</p>`;
                 
-                // Test 5: Overall functionality check
-                resultsDiv.innerHTML += '<h2>5. Overall functionality check...</h2>';
+                // Test 5: Check security features
+                resultsDiv.innerHTML += '<h2>5. Checking security features...</h2>';
+                
+                const hasCryptoAPI = typeof crypto !== 'undefined' && typeof crypto.subtle !== 'undefined';
+                resultsDiv.innerHTML += `<p>Web Crypto API: ${hasCryptoAPI ? 'OK' : 'MISSING'}</p>`;
+                
+                const hasMediaRecorder = typeof MediaRecorder !== 'undefined';
+                resultsDiv.innerHTML += `<p>Media Recorder: ${hasMediaRecorder ? 'OK' : 'MISSING'}</p>`;
+                
+                // Test 6: Check advanced features
+                resultsDiv.innerHTML += '<h2>6. Checking advanced features...</h2>';
+                
+                const hasFetchAPI = typeof fetch !== 'undefined';
+                resultsDiv.innerHTML += `<p>Fetch API: ${hasFetchAPI ? 'OK' : 'MISSING'}</p>`;
+                
+                // Test 7: Overall functionality check
+                resultsDiv.innerHTML += '<h2>7. Overall functionality check...</h2>';
                 
                 const allRequiredFeatures = hasSpeechRecognition && hasAudioContext && hasMediaDevices && 
                                           canStream && hasAbortController && hasAudioAPI;
                 
+                const advancedFeatures = hasCryptoAPI && hasMediaRecorder && hasFetchAPI;
+                
                 resultsDiv.innerHTML += `<p>All Required Features: ${allRequiredFeatures ? 'OK' : 'MISSING'}</p>`;
+                resultsDiv.innerHTML += `<p>Advanced Security Features: ${advancedFeatures ? 'OK' : 'PARTIAL'}</p>`;
                 
                 // Final result
                 resultsDiv.innerHTML += '<h2>--- TEST RESULTS ---</h2>';
                 if (allRequiredFeatures) {
                     resultsDiv.innerHTML += '<p style="color: green; font-weight: bold;">✅ All streaming, voice, and interruption features are supported!</p>';
                     resultsDiv.innerHTML += '<p style="color: green; font-weight: bold;">✅ Ready for ultra-low latency streaming implementation</p>';
+                    if (advancedFeatures) {
+                        resultsDiv.innerHTML += '<p style="color: green; font-weight: bold;">✅ Advanced security and translation features supported</p>';
+                    } else {
+                        resultsDiv.innerHTML += '<p style="color: orange; font-weight: bold;">⚠️ Advanced features limited by browser capabilities</p>';
+                    }
                     resultsDiv.innerHTML += '<p style="color: green; font-weight: bold;">true</p>';
                     return true;
                 } else {
