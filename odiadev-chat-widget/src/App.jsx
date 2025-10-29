@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Mic, MicOff, Send, Volume2, Loader2 } from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Mic, MicOff, Send, Volume2, Loader2, Square } from 'lucide-react';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -7,10 +7,26 @@ function App() {
   const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isInterrupting, setIsInterrupting] = useState(false);
+  const [streamingResponse, setStreamingResponse] = useState('');
   const [config] = useState(() => window.ODIA_WIDGET || {});
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
   const audioRef = useRef(null);
+  const mediaStreamRef = useRef(null);
+  const audioContextRef = useRef(null);
+  const analyserRef = useRef(null);
+  const sourceRef = useRef(null);
+  const silenceTimerRef = useRef(null);
+  const groqAbortControllerRef = useRef(null);
+  const ttsAbortControllerRef = useRef(null);
+  const responseBufferRef = useRef([]);
+  const isStreamingRef = useRef(false);
+  const currentAudioQueueRef = useRef([]);
+
+  // Voice Activity Detection parameters
+  const VAD_THRESHOLD = 0.01;
+  const SILENCE_DURATION = 1500; // ms
 
   // Initialize speech recognition with Nigerian English
   useEffect(() => {
@@ -18,14 +34,26 @@ function App() {
       const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
       const recognition = new SpeechRecognition();
       
-      recognition.continuous = false;
-      recognition.interimResults = false;
+      recognition.continuous = true;
+      recognition.interimResults = true;
       recognition.lang = 'en-NG'; // Nigerian English
       
       recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        setInputText(transcript);
-        setIsListening(false);
+        let finalTranscript = '';
+        let interimTranscript = '';
+        
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            finalTranscript += transcript;
+          } else {
+            interimTranscript += transcript;
+          }
+        }
+        
+        if (finalTranscript) {
+          setInputText(prev => prev + finalTranscript);
+        }
       };
       
       recognition.onerror = (event) => {
@@ -34,50 +62,172 @@ function App() {
       };
       
       recognition.onend = () => {
-        setIsListening(false);
+        if (isListening) {
+          recognition.start();
+        }
       };
       
       recognitionRef.current = recognition;
     }
+    
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+      cleanupAudioResources();
+    };
   }, []);
 
   // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, streamingResponse]);
 
-  const toggleListening = () => {
+  // Cleanup audio resources
+  const cleanupAudioResources = () => {
+    if (audioContextRef.current) {
+      audioContextRef.current.close();
+      audioContextRef.current = null;
+    }
+    if (mediaStreamRef.current) {
+      mediaStreamRef.current.getTracks().forEach(track => track.stop());
+      mediaStreamRef.current = null;
+    }
+    if (silenceTimerRef.current) {
+      clearTimeout(silenceTimerRef.current);
+      silenceTimerRef.current = null;
+    }
+  };
+
+  // Voice Activity Detection
+  const initializeVAD = async () => {
+    try {
+      mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
+      sourceRef.current = audioContextRef.current.createMediaStreamSource(mediaStreamRef.current);
+      analyserRef.current = audioContextRef.current.createAnalyser();
+      
+      analyserRef.current.fftSize = 256;
+      sourceRef.current.connect(analyserRef.current);
+      
+      const detectVoice = () => {
+        if (!analyserRef.current) return;
+        
+        const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
+        analyserRef.current.getByteFrequencyData(dataArray);
+        
+        // Calculate average volume
+        let sum = 0;
+        for (let i = 0; i < dataArray.length; i++) {
+          sum += dataArray[i];
+        }
+        const average = sum / dataArray.length / 255;
+        
+        // Voice activity detection
+        if (average > VAD_THRESHOLD) {
+          // Voice detected, reset silence timer
+          if (silenceTimerRef.current) {
+            clearTimeout(silenceTimerRef.current);
+            silenceTimerRef.current = null;
+          }
+        } else {
+          // Silence detected
+          if (!silenceTimerRef.current) {
+            silenceTimerRef.current = setTimeout(() => {
+              if (isListening) {
+                stopListening();
+              }
+            }, SILENCE_DURATION);
+          }
+        }
+        
+        requestAnimationFrame(detectVoice);
+      };
+      
+      detectVoice();
+    } catch (error) {
+      console.error('VAD initialization error:', error);
+    }
+  };
+
+  const startListening = async () => {
     if (!recognitionRef.current) {
       alert('Speech recognition not supported in this browser');
       return;
     }
 
-    if (isListening) {
-      recognitionRef.current.stop();
-      setIsListening(false);
-    } else {
-      recognitionRef.current.start();
+    try {
+      if (isSpeaking) {
+        interruptSpeech();
+      }
+      
       setIsListening(true);
+      setInputText('');
+      recognitionRef.current.start();
+      
+      // Initialize VAD
+      await initializeVAD();
+    } catch (error) {
+      console.error('Error starting listening:', error);
+      setIsListening(false);
     }
   };
 
-  const handleSendMessage = async () => {
-    if (!inputText.trim() || isProcessing) return;
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+    }
+    setIsListening(false);
+    cleanupAudioResources();
+    
+    if (inputText.trim()) {
+      handleSendMessage();
+    }
+  };
 
-    const userMessage = {
-      role: 'user',
-      content: inputText,
-      timestamp: new Date()
-    };
+  const toggleListening = () => {
+    if (isListening) {
+      stopListening();
+    } else {
+      startListening();
+    }
+  };
 
-    setMessages(prev => [...prev, userMessage]);
-    setInputText('');
-    setIsProcessing(true);
+  // Interrupt current speech
+  const interruptSpeech = () => {
+    setIsInterrupting(true);
+    setIsSpeaking(false);
+    
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    
+    if (ttsAbortControllerRef.current) {
+      ttsAbortControllerRef.current.abort();
+    }
+    
+    // Clear audio queue
+    currentAudioQueueRef.current = [];
+    
+    setTimeout(() => {
+      setIsInterrupting(false);
+    }, 100);
+  };
 
+  // Streaming handler for Groq API
+  const streamGroqResponse = async (userMessage) => {
     try {
-      // Call Groq chat endpoint directly
+      setIsProcessing(true);
+      isStreamingRef.current = true;
+      setStreamingResponse('');
+      responseBufferRef.current = [];
+      
+      // Create AbortController for this request
+      groqAbortControllerRef.current = new AbortController();
+      
       const groqApiKey = config.groqApiKey || 'YOUR_GROQ_API_KEY';
-      const conversationHistory = messages.slice(-10).map(msg => ({
+      const conversationHistory = messages.slice(-5).map(msg => ({
         role: msg.role,
         content: msg.content
       }));
@@ -85,13 +235,14 @@ function App() {
       const messagesForGroq = [
         {
           role: 'system',
-          content: 'You are a helpful AI assistant optimized for Nigerian English and Pidgin. Provide clear, concise responses with cultural awareness. Keep responses under 100 words for fast TTS conversion. You know all about the company staff, projects, and etc.'
+          content: 'You are a helpful AI assistant optimized for Nigerian English and Pidgin. Provide clear, concise responses with cultural awareness. Respond in short segments for streaming.'
         },
         ...conversationHistory,
-        { role: 'user', content: inputText }
+        { role: 'user', content: userMessage }
       ];
 
-      const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      // Using Groq's streaming endpoint
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${groqApiKey}`,
@@ -100,49 +251,103 @@ function App() {
         body: JSON.stringify({
           model: 'llama-3.1-8b-instant',
           messages: messagesForGroq,
-          max_tokens: 150,
-          temperature: 0.7
-        })
+          max_tokens: 200,
+          temperature: 0.7,
+          stream: true
+        }),
+        signal: groqAbortControllerRef.current.signal
       });
 
-      if (!groqResponse.ok) {
-        throw new Error(`Groq API error: ${groqResponse.status}`);
+      if (!response.ok) {
+        throw new Error(`Groq API error: ${response.status}`);
       }
 
-      const groqData = await groqResponse.json();
-      const aiResponse = groqData.choices[0]?.message?.content || 'Sorry, I could not process that.';
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let accumulatedResponse = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop(); // Keep incomplete line in buffer
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data === '[DONE]') continue;
+            
+            try {
+              const parsed = JSON.parse(data);
+              const content = parsed.choices?.[0]?.delta?.content || '';
+              if (content) {
+                accumulatedResponse += content;
+                setStreamingResponse(accumulatedResponse);
+                
+                // Buffer response for TTS
+                responseBufferRef.current.push(content);
+                
+                // Generate TTS for segments
+                if (accumulatedResponse.endsWith('.') || accumulatedResponse.endsWith('!') || accumulatedResponse.endsWith('?') || accumulatedResponse.length > 50) {
+                  if (config.autoPlayAudio !== false) {
+                    await generateAndPlayTTS(accumulatedResponse);
+                    responseBufferRef.current = [];
+                    accumulatedResponse = '';
+                  }
+                }
+              }
+            } catch (e) {
+              // Ignore parsing errors
+            }
+          }
+        }
+      }
       
+      // Play remaining content
+      if (accumulatedResponse && config.autoPlayAudio !== false) {
+        await generateAndPlayTTS(accumulatedResponse);
+      }
+      
+      // Add final message to chat
       const assistantMessage = {
         role: 'assistant',
-        content: aiResponse,
+        content: accumulatedResponse || streamingResponse,
         timestamp: new Date()
       };
-
+      
       setMessages(prev => [...prev, assistantMessage]);
-
-      // Auto-play TTS if enabled
-      if (config.autoPlayAudio !== false) {
-        await playTTS(aiResponse);
-      }
-
+      setStreamingResponse('');
+      
     } catch (error) {
-      console.error('Chat error:', error);
-      const errorMessage = {
-        role: 'assistant',
-        content: 'Sorry, there was an error processing your request. Please try again.',
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, errorMessage]);
+      if (error.name === 'AbortError') {
+        console.log('Streaming aborted');
+      } else {
+        console.error('Streaming error:', error);
+        const errorMessage = {
+          role: 'assistant',
+          content: 'Sorry, there was an error processing your request.',
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, errorMessage]);
+      }
     } finally {
+      isStreamingRef.current = false;
       setIsProcessing(false);
+      setStreamingResponse('');
     }
   };
 
-  const playTTS = async (text) => {
+  // Generate and play TTS with streaming
+  const generateAndPlayTTS = async (text) => {
+    if (!text.trim()) return;
+    
     try {
       setIsSpeaking(true);
+      ttsAbortControllerRef.current = new AbortController();
       
-      // Call Minimax TTS API directly
       const minimaxApiKey = config.minimaxApiKey || 'YOUR_MINIMAX_API_KEY';
       const minimaxGroupId = config.minimaxGroupId || 'YOUR_MINIMAX_GROUP_ID';
       const minimaxModel = config.minimaxModel || 'speech-02-hd';
@@ -160,7 +365,8 @@ function App() {
           pitch: 1.0,
           model: minimaxModel,
           group_id: minimaxGroupId
-        })
+        }),
+        signal: ttsAbortControllerRef.current.signal
       });
 
       if (!ttsResponse.ok) {
@@ -171,21 +377,70 @@ function App() {
       const audioUrl = ttsData.audio_url || ttsData.url;
       
       if (audioUrl && audioRef.current) {
-        audioRef.current.src = audioUrl;
-        await audioRef.current.play();
+        // Queue audio for playback
+        currentAudioQueueRef.current.push(audioUrl);
+        
+        // Play if not already playing
+        if (currentAudioQueueRef.current.length === 1) {
+          await playAudioQueue();
+        }
       }
-
     } catch (error) {
-      console.error('TTS error:', error);
-    } finally {
+      if (error.name !== 'AbortError') {
+        console.error('TTS error:', error);
+      }
+    }
+  };
+
+  // Play audio queue
+  const playAudioQueue = async () => {
+    while (currentAudioQueueRef.current.length > 0 && !isInterrupting) {
+      const audioUrl = currentAudioQueueRef.current[0];
+      
+      try {
+        audioRef.current.src = audioUrl;
+        await new Promise((resolve, reject) => {
+          audioRef.current.onended = resolve;
+          audioRef.current.onerror = reject;
+          audioRef.current.play().catch(reject);
+        });
+      } catch (error) {
+        console.error('Audio playback error:', error);
+      }
+      
+      // Remove played audio from queue
+      currentAudioQueueRef.current.shift();
+    }
+    
+    if (currentAudioQueueRef.current.length === 0) {
       setIsSpeaking(false);
     }
+  };
+
+  const handleSendMessage = async () => {
+    if (!inputText.trim() || isProcessing) return;
+
+    const userMessage = {
+      role: 'user',
+      content: inputText,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputText('');
+    
+    // Use streaming for response
+    await streamGroqResponse(inputText);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSendMessage();
+      if (isListening) {
+        stopListening();
+      } else {
+        handleSendMessage();
+      }
     }
   };
 
@@ -203,18 +458,38 @@ function App() {
               Nigerian English Optimized
             </p>
           </div>
-          {(config.groqApiKey || config.minimaxApiKey) && (
-            <div className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full ${isDark ? 'bg-green-400' : 'bg-green-500'}`}></div>
-              <span className="text-xs">Connected</span>
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            {(config.groqApiKey || config.minimaxApiKey) && (
+              <div className="flex items-center gap-2">
+                <div className={`w-2 h-2 rounded-full ${isDark ? 'bg-green-400' : 'bg-green-500'}`}></div>
+                <span className="text-xs">Connected</span>
+              </div>
+            )}
+            {isListening && (
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                <span className="text-xs">Listening</span>
+              </div>
+            )}
+            {isProcessing && (
+              <div className="flex items-center gap-1">
+                <Loader2 className="w-3 h-3 animate-spin" />
+                <span className="text-xs">Thinking</span>
+              </div>
+            )}
+            {isSpeaking && (
+              <div className="flex items-center gap-1">
+                <Volume2 className="w-3 h-3 text-blue-500" />
+                <span className="text-xs">Speaking</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.length === 0 && (
+        {messages.length === 0 && !isListening && (
           <div className="text-center py-12">
             <Mic className="w-12 h-12 mx-auto mb-4 opacity-30" />
             <p className={`${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -244,10 +519,17 @@ function App() {
           </div>
         ))}
         
-        {isProcessing && (
+        {/* Streaming response */}
+        {streamingResponse && (
           <div className="flex justify-start">
-            <div className={`px-4 py-2 rounded-lg ${isDark ? 'bg-gray-700' : 'bg-white border border-gray-200'}`}>
-              <Loader2 className="w-4 h-4 animate-spin" />
+            <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+              isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900 border border-gray-200'
+            }`}>
+              <p className="text-sm">{streamingResponse}</p>
+              <div className="flex items-center mt-1">
+                <Loader2 className="w-3 h-3 animate-spin mr-1" />
+                <span className="text-xs text-gray-400">Typing...</span>
+              </div>
             </div>
           </div>
         )}
@@ -261,7 +543,7 @@ function App() {
           <button
             onClick={toggleListening}
             disabled={isProcessing}
-            className={`p-3 rounded-lg transition-colors ${
+            className={`p-3 rounded-lg transition-colors relative ${
               isListening
                 ? 'bg-red-500 text-white'
                 : isDark
@@ -270,7 +552,19 @@ function App() {
             } disabled:opacity-50`}
           >
             {isListening ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+            {isListening && (
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            )}
           </button>
+          
+          {isListening && (
+            <button
+              onClick={stopListening}
+              className="p-3 rounded-lg bg-gray-200 hover:bg-gray-300 transition-colors"
+            >
+              <Square className="w-5 h-5" />
+            </button>
+          )}
           
           <textarea
             value={inputText}
@@ -293,15 +587,24 @@ function App() {
             <Send className="w-5 h-5" />
           </button>
           
-          {isSpeaking && (
-            <div className="p-3">
-              <Volume2 className="w-5 h-5 text-blue-500 animate-pulse" />
-            </div>
+          {(isSpeaking || isInterrupting) && (
+            <button
+              onClick={interruptSpeech}
+              className="p-3 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors"
+            >
+              <Square className="w-5 h-5" />
+            </button>
           )}
         </div>
       </div>
 
-      <audio ref={audioRef} onEnded={() => setIsSpeaking(false)} />
+      <audio ref={audioRef} onEnded={() => {
+        if (currentAudioQueueRef.current.length > 0) {
+          playAudioQueue();
+        } else {
+          setIsSpeaking(false);
+        }
+      }} />
     </div>
   );
 }
