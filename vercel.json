@@ -12,6 +12,10 @@
       "destination": "/odiadev-chat-widget/dist/$1"
     },
     {
+      "source": "/widget",
+      "destination": "/odiadev-chat-widget/dist/index.html"
+    },
+    {
       "source": "/api/health",
       "destination": "/api/health.js"
     },
