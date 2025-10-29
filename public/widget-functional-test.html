@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Functional Widget Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f5f7fa;
+        }
+        .container {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .instructions {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .widget-container {
+            flex: 1;
+        }
+        code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        pre {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .warning {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .success {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>ODIADEV Voice AI Widget Functional Test</h1>
+    
+    <div class="container">
+        <div class="instructions">
+            <h2>Setup Instructions</h2>
+            
+            <div class="warning">
+                <strong>Important:</strong> You must configure API keys for the widget to function properly!
+            </div>
+            
+            <h3>Step 1: Enter Your API Keys</h3>
+            <p>Enter your Groq and Minimax API keys below:</p>
+            
+            <label for="groqKey">Groq API Key:</label>
+            <input type="password" id="groqKey" placeholder="Enter your Groq API key">
+            
+            <label for="minimaxKey">Minimax API Key:</label>
+            <input type="password" id="minimaxKey" placeholder="Enter your Minimax API key">
+            
+            <label for="minimaxGroup">Minimax Group ID:</label>
+            <input type="text" id="minimaxGroup" placeholder="Enter your Minimax group ID">
+            
+            <button onclick="configureWidget()">Configure Widget</button>
+            
+            <h3>Step 2: Test the Widget</h3>
+            <p>After configuring your API keys:</p>
+            <ol>
+                <li>Click the microphone button in the widget to start speaking</li>
+                <li>Allow microphone access when prompted</li>
+                <li>Speak your message</li>
+                <li>The widget should transcribe your speech and respond</li>
+            </ol>
+            
+            <div class="success">
+                <strong>Success!</strong> Once configured, the widget will be able to:
+                <ul>
+                    <li>Capture voice input using your microphone</li>
+                    <li>Transcribe speech to text using Web Speech API</li>
+                    <li>Process messages with Groq's LLM</li>
+                    <li>Generate voice responses with Minimax TTS</li>
+                </ul>
+            </div>
+            
+            <h3>Troubleshooting</h3>
+            <p>If the widget still doesn't respond:</p>
+            <ul>
+                <li>Check that you've entered valid API keys</li>
+                <li>Ensure your browser supports Web Speech API</li>
+                <li>Check browser console for error messages (F12)</li>
+                <li>Try refreshing the page after configuring keys</li>
+            </ul>
+        </div>
+        
+        <div class="widget-container">
+            <h2>Chat Widget</h2>
+            <iframe 
+                src="/widget" 
+                width="400" 
+                height="600" 
+                style="border: 1px solid #ccc; border-radius: 8px;"
+                title="ODIADEV Chat Widget">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        // Configure the widget with API keys
+        function configureWidget() {
+            const groqKey = document.getElementById('groqKey').value;
+            const minimaxKey = document.getElementById('minimaxKey').value;
+            const minimaxGroup = document.getElementById('minimaxGroup').value;
+            
+            if (!groqKey || !minimaxKey || !minimaxGroup) {
+                alert('Please enter all API keys');
+                return;
+            }
+            
+            // Set the configuration globally
+            window.ODIA_WIDGET = {
+                groqApiKey: groqKey,
+                minimaxApiKey: minimaxKey,
+                minimaxGroupId: minimaxGroup,
+                theme: 'light',
+                autoPlayAudio: true
+            };
+            
+            alert('Widget configured successfully! You can now use the voice features.');
+            
+            // Reload the iframe to apply configuration
+            const iframe = document.querySelector('iframe');
+            iframe.src = iframe.src;
+        }
+    </script>
+</body>
+</html>

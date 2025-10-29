@@ -28,8 +28,12 @@ function App() {
   const VAD_THRESHOLD = 0.01;
   const SILENCE_DURATION = 1500; // ms
 
+  // Debug logging
+  console.log('Widget loaded with config:', config);
+
   // Initialize speech recognition with Nigerian English
   useEffect(() => {
+    console.log('Initializing speech recognition...');
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
       const recognition = new SpeechRecognition();
@@ -39,6 +43,7 @@ function App() {
       recognition.lang = 'en-NG'; // Nigerian English
       
       recognition.onresult = (event) => {
+        console.log('Speech recognition result:', event);
         let finalTranscript = '';
         let interimTranscript = '';
         
@@ -52,6 +57,7 @@ function App() {
         }
         
         if (finalTranscript) {
+          console.log('Final transcript:', finalTranscript);
           setInputText(prev => prev + finalTranscript);
         }
       };
@@ -62,15 +68,20 @@ function App() {
       };
       
       recognition.onend = () => {
+        console.log('Speech recognition ended');
         if (isListening) {
           recognition.start();
         }
       };
       
       recognitionRef.current = recognition;
+      console.log('Speech recognition initialized successfully');
+    } else {
+      console.warn('Speech recognition not supported in this browser');
     }
     
     return () => {
+      console.log('Cleaning up speech recognition');
       if (recognitionRef.current) {
         recognitionRef.current.stop();
       }
@@ -85,6 +96,7 @@ function App() {
 
   // Cleanup audio resources
   const cleanupAudioResources = () => {
+    console.log('Cleaning up audio resources');
     if (audioContextRef.current) {
       audioContextRef.current.close();
       audioContextRef.current = null;
@@ -101,6 +113,7 @@ function App() {
 
   // Voice Activity Detection
   const initializeVAD = async () => {
+    console.log('Initializing VAD...');
     try {
       mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
       audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
@@ -135,6 +148,7 @@ function App() {
           if (!silenceTimerRef.current) {
             silenceTimerRef.current = setTimeout(() => {
               if (isListening) {
+                console.log('Silence detected, stopping listening');
                 stopListening();
               }
             }, SILENCE_DURATION);
@@ -145,12 +159,14 @@ function App() {
       };
       
       detectVoice();
+      console.log('VAD initialized successfully');
     } catch (error) {
       console.error('VAD initialization error:', error);
     }
   };
 
   const startListening = async () => {
+    console.log('Start listening called');
     if (!recognitionRef.current) {
       alert('Speech recognition not supported in this browser');
       return;
@@ -164,6 +180,7 @@ function App() {
       setIsListening(true);
       setInputText('');
       recognitionRef.current.start();
+      console.log('Speech recognition started');
       
       // Initialize VAD
       await initializeVAD();
@@ -174,6 +191,7 @@ function App() {
   };
 
   const stopListening = () => {
+    console.log('Stop listening called');
     if (recognitionRef.current) {
       recognitionRef.current.stop();
     }
@@ -186,6 +204,7 @@ function App() {
   };
 
   const toggleListening = () => {
+    console.log('Toggle listening called, current state:', isListening);
     if (isListening) {
       stopListening();
     } else {
@@ -195,6 +214,7 @@ function App() {
 
   // Interrupt current speech
   const interruptSpeech = () => {
+    console.log('Interrupt speech called');
     setIsInterrupting(true);
     setIsSpeaking(false);
     
@@ -218,6 +238,15 @@ function App() {
   // Streaming handler for Groq API
   const streamGroqResponse = async (userMessage) => {
     try {
+      console.log('Streaming Groq response for message:', userMessage);
+      // Check if API keys are configured
+      const groqApiKey = config.groqApiKey || 'YOUR_GROQ_API_KEY';
+      const hasGroqKey = groqApiKey && groqApiKey !== 'YOUR_GROQ_API_KEY';
+      
+      if (!hasGroqKey) {
+        throw new Error('GROQ_API_KEY not configured');
+      }
+      
       setIsProcessing(true);
       isStreamingRef.current = true;
       setStreamingResponse('');
@@ -226,7 +255,6 @@ function App() {
       // Create AbortController for this request
       groqAbortControllerRef.current = new AbortController();
       
-      const groqApiKey = config.groqApiKey || 'YOUR_GROQ_API_KEY';
       const conversationHistory = messages.slice(-5).map(msg => ({
         role: msg.role,
         content: msg.content
@@ -326,9 +354,17 @@ function App() {
         console.log('Streaming aborted');
       } else {
         console.error('Streaming error:', error);
+        let errorMessageContent = 'Sorry, there was an error processing your request.';
+        
+        if (error.message.includes('GROQ_API_KEY')) {
+          errorMessageContent = 'GROQ API key not configured. Please set GROQ_API_KEY in window.ODIA_WIDGET configuration.';
+        } else if (error.message.includes('API error')) {
+          errorMessageContent = `API error: ${error.message}`;
+        }
+        
         const errorMessage = {
           role: 'assistant',
-          content: 'Sorry, there was an error processing your request.',
+          content: errorMessageContent,
           timestamp: new Date()
         };
         setMessages(prev => [...prev, errorMessage]);
@@ -345,11 +381,20 @@ function App() {
     if (!text.trim()) return;
     
     try {
+      console.log('Generating TTS for text:', text);
+      // Check if Minimax API keys are configured
+      const minimaxApiKey = config.minimaxApiKey || 'YOUR_MINIMAX_API_KEY';
+      const minimaxGroupId = config.minimaxGroupId || 'YOUR_MINIMAX_GROUP_ID';
+      const hasMinimaxKey = minimaxApiKey && minimaxApiKey !== 'YOUR_MINIMAX_API_KEY';
+      
+      if (!hasMinimaxKey) {
+        console.warn('Minimax API key not configured - skipping TTS');
+        return;
+      }
+      
       setIsSpeaking(true);
       ttsAbortControllerRef.current = new AbortController();
       
-      const minimaxApiKey = config.minimaxApiKey || 'YOUR_MINIMAX_API_KEY';
-      const minimaxGroupId = config.minimaxGroupId || 'YOUR_MINIMAX_GROUP_ID';
       const minimaxModel = config.minimaxModel || 'speech-02-hd';
       
       const ttsResponse = await fetch('https://api.minimax.chat/v1/tts', {
@@ -388,6 +433,7 @@ function App() {
     } catch (error) {
       if (error.name !== 'AbortError') {
         console.error('TTS error:', error);
+        // Don't show TTS errors to user since it's not critical for text chat
       }
     }
   };
@@ -418,7 +464,23 @@ function App() {
   };
 
   const handleSendMessage = async () => {
+    console.log('Handle send message called with text:', inputText);
     if (!inputText.trim() || isProcessing) return;
+
+    // Check if API keys are configured
+    const hasGroqKey = config.groqApiKey && config.groqApiKey !== 'YOUR_GROQ_API_KEY';
+    const hasMinimaxKey = config.minimaxApiKey && config.minimaxApiKey !== 'YOUR_MINIMAX_API_KEY';
+    
+    if (!hasGroqKey || !hasMinimaxKey) {
+      const errorMessage = {
+        role: 'assistant',
+        content: 'API keys not configured. Please set GROQ_API_KEY and MINIMAX_API_KEY in window.ODIA_WIDGET configuration.',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, {role: 'user', content: inputText, timestamp: new Date()}, errorMessage]);
+      setInputText('');
+      return;
+    }
 
     const userMessage = {
       role: 'user',
